@@ -1,9 +1,51 @@
+# Dependencies
 node_modules/
-dist/
-.DS_Store
-*.log
-.env
-.env.local
-.vscode/
-client/dist/
 client/node_modules/
+.pnp
+.pnp.js
+
+# Production build output
+dist/
+client/dist/
+build/
+dist-ssr/
+
+# Playwright & Testing artifacts
+playwright-report/
+test-results/
+playwright/.cache/
+*.spec.js-snapshots/
+run-playwright-tests.js
+client/run-playwright-tests.js
+*_*.png
+*px.png
+*.spec.js.snap
+
+# Environment variables & secrets
+.env
+.env.*
+!.env.example
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Editor & OS files
+.vscode/
+.idea/
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+Thumbs.db
