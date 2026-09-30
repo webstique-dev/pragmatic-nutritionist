@@ -9,6 +9,7 @@ dist/
 client/dist/
 build/
 dist-ssr/
+playwright
 
 # Playwright & Testing artifacts
 playwright-report/
