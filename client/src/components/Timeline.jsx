@@ -30,21 +30,19 @@ export default function Timeline() {
   return (
     <Section
       id="how-it-works"
-      width="medium"
-      bg="sage"
-      eyebrow="HOW IT WORKS"
-      title="3 Steps to Your Transformation"
-      lead="A structured three-step methodology designed for clarity, root-cause resolution, and continuous chat support."
+      width="wide"
+      bg="cream"
+      eyebrow="STRUCTURED METHODOLOGY"
+      title="Your Path to Lasting Vitality"
+      lead="A clear, three-phase clinical process focused on root-cause diagnosis, habit coaching, and continuous support."
     >
-      <div className="timeline-container" ref={containerRef}>
-        {/* Desktop timeline line indicator */}
-        <div className="timeline-desktop-line" aria-hidden="true">
-          <div
-            className="timeline-progress-fill"
-            style={{ width: `${((activeStep - 1) / (STEPS.length - 1)) * 100}%` }}
-          />
-        </div>
+      <div className="section-divider-row" aria-hidden="true">
+        <span className="divider-label">AUDIT.</span>
+        <span className="divider-line" />
+        <span className="divider-label">TRANSFORMATION.</span>
+      </div>
 
+      <div className="timeline-container" ref={containerRef}>
         <div className="timeline-grid">
           {STEPS.map(([title, desc], idx) => {
             const isCompleted = idx + 1 <= activeStep
@@ -55,19 +53,15 @@ export default function Timeline() {
                 key={title}
                 data-index={idx}
                 ref={(el) => (itemRefs.current[idx] = el)}
-                className={`timeline-step ${isCompleted ? 'step-active' : ''} ${isCurrent ? 'step-current' : ''}`}
+                className={`timeline-step-card ${isCompleted ? 'step-active' : ''} ${isCurrent ? 'step-current' : ''}`}
               >
-                <div className="step-node-wrapper">
-                  <div className="step-node">
-                    <span className="step-number">{idx + 1}</span>
-                  </div>
+                <div className="step-card-header">
+                  <span className="step-num-editorial">(0{idx + 1})</span>
+                  <span className="step-phase-tag">PHASE 0{idx + 1}</span>
                 </div>
 
-                <div className="step-card">
-                  <span className="step-badge">STEP 0{idx + 1}</span>
-                  <h3 className="step-title">{title}</h3>
-                  <p className="step-desc">{desc}</p>
-                </div>
+                <h3 className="step-card-title">{title}</h3>
+                <p className="step-card-desc">{desc}</p>
               </div>
             )
           })}

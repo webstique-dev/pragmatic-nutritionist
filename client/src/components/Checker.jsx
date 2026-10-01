@@ -33,13 +33,21 @@ export default function Checker() {
 
   return (
     <Section id="checker" width="wide" bg="olive" className="checker-section">
+      <div className="section-divider-row" aria-hidden="true">
+        <span className="divider-label">SELF ASSESSMENT.</span>
+        <span className="divider-line" />
+        <span className="divider-label">GUT SCORE.</span>
+      </div>
+
       <div className="checker-two-col">
         {/* Left Column: Context & Benefits */}
         <div className="checker-info-col">
-          <span className="section-eyebrow">NOT SURE WHERE TO START?</span>
-          <h2 className="checker-heading">Free 2-Minute Gut Health Checker</h2>
+          <span className="section-eyebrow">FREE CLINICAL AUDIT</span>
+          <h2 className="checker-heading">
+            Evaluate Your <em>Digestive Vitality</em>
+          </h2>
           <p className="lead">
-            Get a clearer picture of areas worth exploring before booking a call. Answer 5 simple questions about your digestion, acidity, and energy.
+            Gain immediate clarity on digestive triggers, bloating patterns, and metabolic warning signs with our evidence-based 5-question audit.
           </p>
 
           <div className="checker-benefits-list">

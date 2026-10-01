@@ -14,14 +14,21 @@ const FEATURED_LOGOS = [
 
 export default function ProofStrip() {
   return (
-    <section className="proof-strip-section bg-forest" aria-label="Key metrics and media features">
+    <section className="proof-strip-section proof-strip-editorial" aria-label="Key metrics and media features">
       <div className="proof-container">
-        {/* 4-column counter grid matching user reference */}
+        {/* Editorial Divider Header */}
+        <div className="section-divider-row" aria-hidden="true">
+          <span className="divider-label">TRACK RECORD.</span>
+          <span className="divider-line" />
+          <span className="divider-label">CLINICAL IMPACT.</span>
+        </div>
+
+        {/* 4-column counter grid matching editorial wellness reference */}
         <Reveal className="proof-stats-grid">
-          <Counter to={14} suffix="+" label="Years" />
-          <Counter to={4500} suffix="+" label="Clients" />
-          <Counter to={350} suffix="+" label="Nutritionists Trained" />
-          <Counter to={3} suffix=" Countries" label="UK, New Zealand, India" />
+          <Counter to={14} suffix="+" label="Years of Clinical Practice" />
+          <Counter to={4500} suffix="+" label="Clients Transformed" />
+          <Counter to={350} suffix="+" label="Nutritionists Mentored" />
+          <Counter to={3} suffix=" Countries" label="India • UK • New Zealand" />
         </Reveal>
 
         {/* Seamless slow marquee showcasing featured media logos */}

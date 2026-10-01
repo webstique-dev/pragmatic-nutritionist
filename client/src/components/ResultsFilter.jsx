@@ -5,7 +5,7 @@ import Section from './Section'
 
 const CATEGORIES = ['ALL', 'GUT HEALTH', 'SPORTS NUTRITION', 'WEIGHT LOSS', 'PCOS', 'DIABETES']
 
-export default function ResultsFilter({ title = 'Real Clients Real Outcomes' }) {
+export default function ResultsFilter({ title = 'Clinical Outcomes & Patient Stories' }) {
   const [activeTag, setActiveTag] = useState('ALL')
 
   const filteredResults = RESULTS.filter((item) => {
@@ -17,11 +17,17 @@ export default function ResultsFilter({ title = 'Real Clients Real Outcomes' }) 
     <Section
       id="results"
       width="wide"
-      bg="cream"
-      eyebrow="WHAT PEOPLE SAY ABOUT WORKING WITH MEENU"
+      bg="olive"
+      eyebrow="DOCUMENTED PATIENT PROGRESS"
       title={title}
-      lead="Real client progress tracked across digestive recovery, sustainable weight management, hormonal balance, and athletic milestones."
+      lead="Real client progress tracked across digestive recovery, sustainable metabolic health, hormonal balance, and athletic milestones."
     >
+      <div className="section-divider-row" aria-hidden="true">
+        <span className="divider-label">STORIES.</span>
+        <span className="divider-line" />
+        <span className="divider-label">OUTCOMES.</span>
+      </div>
+
       {/* 4500+ Verified Reviews Badge Strip */}
       <div className="results-rating-badge-wrap">
         <div className="verified-rating-pill">
@@ -32,7 +38,7 @@ export default function ResultsFilter({ title = 'Real Clients Real Outcomes' }) 
           </span>
           <span className="rating-score">5.0</span>
           <span className="rating-divider">•</span>
-          <span className="rating-count">4,500+ Verified Clients</span>
+          <span className="rating-count">4,500+ Verified Patient Transformations</span>
         </div>
       </div>
 

@@ -1,39 +1,48 @@
-import { MessageCircle, CheckCircle2 } from 'lucide-react'
+import { MessageCircle, CheckCircle2, ArrowRight } from 'lucide-react'
 import { useBook } from '../context/bookContext'
 import { wa } from '../data/site'
 import Section from './Section'
 
 export default function CtaBand({
-  title = 'Ready to feel at ease in your body?',
-  text = 'Book a 15-minute free discovery call to discuss your symptoms and get a clear roadmap.'
+  title = 'Ready to Transform Your Nutrition?',
+  text = 'From gut recovery to peak athletic performance: personalised plans built on real clinical expertise.'
 }) {
   const openBook = useBook()
 
   return (
-    <Section width="full" bg="forest" className="cta-band-section">
-      <div className="cta-band-content">
-        <span className="cta-badge">TAKE THE FIRST STEP</span>
-        <h2 className="cta-heading">{title}</h2>
-        <p className="cta-subtext">{text}</p>
-        
-        <div className="cta-buttons-row">
-          <button className="btn btn-light btn-lg" onClick={openBook}>
-            Book Free Call
+    <Section width="wide" bg="olive" className="cta-editorial-band-section">
+      <div className="section-divider-row" aria-hidden="true">
+        <span className="divider-label">DISCOVERY.</span>
+        <span className="divider-line" />
+        <span className="divider-label">CARE PROTOCOLS.</span>
+      </div>
+
+      <div className="cta-band-editorial-content">
+        <span className="section-eyebrow">BEGIN TODAY</span>
+        <h2 className="cta-editorial-heading">
+          Take the First Step Toward <em>Lasting Wellness</em>
+        </h2>
+        <p className="cta-editorial-subtext">{text}</p>
+
+        <div className="cta-buttons-editorial-row">
+          <button type="button" className="btn-editorial-pill-primary" onClick={openBook}>
+            <span>Book Free Discovery Call</span>
+            <ArrowRight size={15} strokeWidth={2.25} aria-hidden="true" />
           </button>
           <a
-            className="btn btn-outline-light btn-lg btn-no-underline"
+            className="btn-editorial-pill-secondary btn-no-underline"
             href={wa('Hi Meenu, I would like to explore your nutrition consultation programs.')}
             target="_blank"
             rel="noreferrer"
           >
-            <MessageCircle size={18} strokeWidth={2.25} style={{ marginRight: '6px' }} />
+            <MessageCircle size={15} strokeWidth={2.25} />
             <span>Chat on WhatsApp</span>
           </a>
         </div>
 
-        <div className="cta-guarantee-note">
-          <CheckCircle2 size={13} strokeWidth={2.5} style={{ display: 'inline', verticalAlign: 'middle', marginRight: '4px' }} />
-          <span>NO OBLIGATIONS • 100% CONFIDENTIAL • AVAILABLE ACROSS INDIA</span>
+        <div className="cta-guarantee-editorial-note">
+          <CheckCircle2 size={13} strokeWidth={2.5} className="text-moss" />
+          <span>NO GENERIC TEMPLATES • 100% EVIDENCE-BASED • ONLINE GLOBALLY</span>
         </div>
       </div>
     </Section>

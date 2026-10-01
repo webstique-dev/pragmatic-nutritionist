@@ -8,7 +8,6 @@ import Checker from '../components/Checker'
 import WhyPragmatic from '../components/WhyPragmatic'
 import Timeline from '../components/Timeline'
 import MeetMeenu from '../components/MeetMeenu'
-import AwardRecognition from '../components/AwardRecognition'
 import DiagnosticCare from '../components/DiagnosticCare'
 import Faq from '../components/Faq'
 import CtaBand from '../components/CtaBand'
@@ -21,18 +20,40 @@ export default function Home() {
 
   return (
     <>
+      {/* 1. Hero: Visual hook & 4 Pillars */}
       <Hero />
+
+      {/* 2. Proof Strip: Clinical track record & Press */}
       <ProofStrip />
-      <Champions />
+
+      {/* 3. Core Disciplines: Gut Health & Sports Nutrition */}
       <CoreAreas />
-      <ResultsFilter />
-      <Checker />
+
+      {/* 4. Clinical Philosophy: The Pragmatic Approach */}
       <WhyPragmatic />
-      <Timeline />
+
+      {/* 5. Clinical Founder & Honors: Meenu Balaji & Realistic Awards 2026 */}
       <MeetMeenu />
-      <AwardRecognition />
+
+      {/* 6. Precision Care: Data-Led Diagnostic Testing */}
       <DiagnosticCare />
+
+      {/* 7. Structured Methodology: 3-Phase Path to Lasting Vitality */}
+      <Timeline />
+
+      {/* 8. Interactive Clinical Audit: 5-Question Vitality Checker */}
+      <Checker />
+
+      {/* 9. Social Proof: Champions & Elite Athletes */}
+      <Champions />
+
+      {/* 10. Social Proof: Verified Patient Clinical Outcomes */}
+      <ResultsFilter />
+
+      {/* 11. FAQ: Common Inquiries & Clarity */}
       <Faq tight />
+
+      {/* 12. Final Action Band */}
       <CtaBand
         title="Ready to Transform Your Nutrition?"
         text="From gut recovery to peak athletic performance: personalised plans built on real clinical expertise."

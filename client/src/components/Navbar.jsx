@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
-import { ChevronDown, X } from 'lucide-react'
+import { ChevronDown, X, ArrowRight } from 'lucide-react'
 import { MENU } from '../data/site'
 import { useBook } from '../context/bookContext'
 import logoImg from '../assets/Pragmatic_logo.png'
@@ -125,13 +125,16 @@ export default function Navbar() {
 
           <div className="navbar-actions">
             <button
-              className="btn btn-nav btn-primary"
+              type="button"
+              className="nav-editorial-cta"
               onClick={() => {
                 closeAll()
                 openBook()
               }}
+              aria-label="Book a free consultation call"
             >
-              Book Free Call
+              <span>Get Started</span>
+              <ArrowRight size={14} strokeWidth={2.25} aria-hidden="true" />
             </button>
 
             <button

@@ -2,125 +2,195 @@ import { useState } from 'react'
 import {
   Sprout,
   Zap,
-  ArrowRight,
-  MessageCircle,
-  Star,
+  Activity,
   Utensils,
-  TrendingUp
+  ArrowRight,
+  ChevronDown
 } from 'lucide-react'
-import { HERO } from '../data/site'
 import { useBook } from '../context/bookContext'
-import Photo from './Photo'
 import Reveal from './Reveal'
-import portraitGut from '../assets/Faithfully Enhanced Portrait.png'
-import portraitSports from '../assets/Faithful high-resolution photo enhancement.png'
+import capsuleImg from '../assets/capsule.png'
+import lifestyleImg from '../assets/hero-wellness-lifestyle.jpg'
+
+const PILLARS = [
+  {
+    id: '01',
+    num: '(01)',
+    title: 'Clinical Gut Health',
+    icon: Sprout,
+    details: 'Root-cause protocols for IBS, chronic bloating, acidity, GERD, constipation, and SIBO without extreme elimination diets.'
+  },
+  {
+    id: '02',
+    num: '(02)',
+    title: 'Sports Nutrition',
+    icon: Zap,
+    details: 'Match-day fuelling, endurance strategies, body composition, and recovery for teen, competitive, and national athletes.'
+  },
+  {
+    id: '03',
+    num: '(03)',
+    title: 'Metabolic & Hormonal Care',
+    icon: Activity,
+    details: 'Targeted biomarker nutrition for PCOS, Type-2 Diabetes reversal, thyroid balance, and sustainable metabolic fat loss.'
+  },
+  {
+    id: '04',
+    num: '(04)',
+    title: 'Everyday Indian Food',
+    icon: Utensils,
+    details: 'No generic crash diets. Every plan is rooted in your home kitchen—dal, rice, roti, sambar, and authentic regional cooking.'
+  }
+]
 
 export default function Hero() {
-  const [activeTab, setActiveTab] = useState('gut')
-  const currentHero = HERO[activeTab]
+  const [expandedPillar, setExpandedPillar] = useState('01')
   const openBook = useBook()
 
+  const togglePillar = (id) => {
+    setExpandedPillar(expandedPillar === id ? null : id)
+  }
+
   return (
-    <header className="hero-section">
-      <div className="hero-container">
-        {/* Left Column: Content & Call to Actions */}
-        <Reveal className="hero-content">
-          <div className="hero-toggle-wrap">
-            <div className="hero-tabs" role="tablist" aria-label="Choose your nutrition focus">
-              <button
-                role="tab"
-                aria-selected={activeTab === 'gut'}
-                className={`hero-tab ${activeTab === 'gut' ? 'active' : ''}`}
-                onClick={() => setActiveTab('gut')}
-              >
-                <Sprout className="tab-icon" size={16} strokeWidth={2.25} aria-hidden="true" />
-                <span>I have gut issues</span>
-              </button>
-              <button
-                role="tab"
-                aria-selected={activeTab === 'sports'}
-                className={`hero-tab ${activeTab === 'sports' ? 'active' : ''}`}
-                onClick={() => setActiveTab('sports')}
-              >
-                <Zap className="tab-icon" size={16} strokeWidth={2.25} aria-hidden="true" />
-                <span>I'm an athlete</span>
-              </button>
+    <section className="hero-editorial-section" aria-label="Welcome to Pragmatic Nutrition">
+      {/* SVG ClipPath Definition for the Irregular Organic Pebble/Cloud Shape */}
+      <svg width="0" height="0" className="svg-mask-defs" aria-hidden="true">
+        <defs>
+          <clipPath id="organic-lifestyle-mask" clipPathUnits="objectBoundingBox">
+            <path d="M 0.06,0.54 C 0.01,0.64 0.02,0.76 0.08,0.85 C 0.16,0.96 0.34,0.98 0.54,0.96 C 0.74,0.94 0.90,0.89 0.96,0.76 C 1.01,0.65 0.98,0.48 0.92,0.36 C 0.86,0.24 0.78,0.08 0.65,0.08 C 0.55,0.08 0.50,0.22 0.44,0.24 C 0.36,0.26 0.30,0.15 0.20,0.18 C 0.10,0.21 0.07,0.36 0.06,0.54 Z" />
+          </clipPath>
+        </defs>
+      </svg>
+
+      <div className="hero-editorial-container">
+        {/* Left Panel (approx 44% width): Sage background, cropped decorative HEALTH letters, floating capsule whole foods, editorial caption */}
+        <div className="hero-left-panel">
+          {/* Huge pale decorative lettering cropped behind the imagery */}
+          <div className="hero-decorative-letters" aria-hidden="true">
+            <span className="dec-letter dec-h">H</span>
+            <span className="dec-letter dec-e">E</span>
+            <span className="dec-letter dec-a">A</span>
+            <span className="dec-letter dec-l">L</span>
+            <span className="dec-letter dec-t">T</span>
+            <span className="dec-letter dec-h2">H</span>
+          </div>
+
+          {/* Central Nutrition Whole-Foods Cutout Composition */}
+          <div className="hero-capsule-wrapper">
+            <div className="hero-capsule-card">
+              <img
+                src={capsuleImg}
+                alt="Whole food nutrition capsule with fresh broccoli, red onion, strawberries, lime, and basil"
+                className="hero-capsule-img"
+                loading="eager"
+                fetchPriority="high"
+              />
             </div>
           </div>
 
-          <div className="hero-headline-wrap" key={activeTab}>
-            <h1 className="hero-title">{currentHero.h}</h1>
-            <p className="lead hero-sub-lead">{currentHero.sub}</p>
-            <p className="hero-lead">{currentHero.p}</p>
+          {/* Bottom Italic Editorial Caption */}
+          <div className="hero-left-caption">
+            <p className="editorial-italic-caption">
+              Nutrition That Delivers Results
+            </p>
+          </div>
+        </div>
+
+        {/* Right Panel (approx 56% width): Oversized olive headline, thin divider, organic lifestyle shape, intro & 4 pillars */}
+        <div className="hero-right-panel">
+          {/* Oversized Olive-Green Serif Headline */}
+          <header className="hero-right-header">
+            <h1 className="hero-editorial-headline">
+              Wellness <em>Walk</em>
+            </h1>
+          </header>
+
+          {/* Thin Horizontal Divider with Opposing Small Labels */}
+          <div className="hero-divider-row" aria-hidden="true">
+            <span className="divider-label">GOALS.</span>
+            <span className="divider-line" />
+            <span className="divider-label">HEALTH.</span>
           </div>
 
-          <div className="hero-actions">
-            <button className="btn btn-primary btn-lg" onClick={openBook}>
-              <span>Talk to A Nutritionist</span>
-              <ArrowRight size={18} strokeWidth={2.5} aria-hidden="true" />
-            </button>
-            <a
-              className="btn btn-wa btn-lg btn-no-underline"
-              href="https://wa.me/919790425908?text=Hi%20Meenu%2C%20I%20would%20like%20to%20talk%20to%20a%20nutritionist."
-              target="_blank"
-              rel="noreferrer"
-            >
-              <MessageCircle size={18} strokeWidth={2.25} aria-hidden="true" />
-              <span>Whatsapp Meenu</span>
-            </a>
+          {/* Lifestyle Photograph in Irregular Organic Pebble Shape */}
+          <div className="hero-organic-image-wrap">
+            <div className="hero-organic-mask-container">
+              <img
+                src={lifestyleImg}
+                alt="Smiling woman enjoying vibrant, fresh kitchen whole foods"
+                className="hero-organic-photo"
+                loading="eager"
+                fetchPriority="high"
+              />
+            </div>
           </div>
 
-          <div className="hero-micro-trust">
-            <span className="trust-dot" />
-            <span>Trusted by public figures, founders, international-level athletes, and health professionals across India and internationally.</span>
-          </div>
-        </Reveal>
-
-        {/* Right Column: Full-Bleed Visual Panel with Floating Trust Badges */}
-        <Reveal className="hero-visual-pane" delay={200}>
-          <div className="hero-visual-inner">
-            <Photo
-              src={activeTab === 'sports' ? portraitSports : portraitGut}
-              warm={activeTab === 'sports'}
-              label="Meenu Balaji - Clinical Gut Health & Sports Nutritionist"
-              className={`hero-photo-panel ${activeTab === 'sports' ? 'fade-sports' : 'fade-gut'}`}
-            >
-              {/* Floating Trust Chips with Parallax Float Animation */}
-              <div className="floating-chip chip-top-right float-anim-1">
-                <Star className="chip-icon text-moss" size={16} strokeWidth={2.25} />
-                <div>
-                  <strong>{activeTab === 'sports' ? 'National Champions' : '2,000+ Clients'}</strong>
-                  <small>{activeTab === 'sports' ? 'Podium-proven fuelling' : 'Personalised care'}</small>
-                </div>
+          {/* Lower Content Grid: 4 Pillars of Nutrition */}
+          <div className="hero-pillars-grid">
+            {/* Left Sub-column: Editorial Title & Description */}
+            <div className="hero-pillars-intro">
+              <h2 className="pillars-main-title">
+                Our 4 Pillars <em>Of Clinical Care</em>
+              </h2>
+              <p className="pillars-intro-text">
+                Evidence-based protocols built around your body&apos;s symptoms, biochemistry, and authentic Indian home meals.
+              </p>
+              <div className="hero-pillars-action">
+                <button
+                  type="button"
+                  className="btn-editorial-text"
+                  onClick={openBook}
+                  aria-label="Book a consultation with Meenu Balaji"
+                >
+                  <span>Start Your Personal Plan</span>
+                  <ArrowRight size={15} strokeWidth={2.25} aria-hidden="true" />
+                </button>
               </div>
+            </div>
 
-              <div className="floating-chip chip-bottom-left float-anim-2">
-                <Utensils className="chip-icon text-moss" size={16} strokeWidth={2.25} />
-                <div>
-                  <strong>{activeTab === 'sports' ? 'Youth & Elite Sports' : 'Indian Food-First'}</strong>
-                  <small>{activeTab === 'sports' ? 'Growth-safe protocols' : 'Zero crash diets'}</small>
-                </div>
-              </div>
-            </Photo>
-          </div>
+            {/* Right Sub-column: 4 Numbered Feature Rows with Fine Separators & Working Accordions */}
+            <div className="hero-pillars-list" role="region" aria-label="Four Core Pillars of Nutrition">
+              {PILLARS.map((pillar) => {
+                const IconComponent = pillar.icon
+                const isExpanded = expandedPillar === pillar.id
 
-          {/* Mobile Trust Chips Strip */}
-          <div className="hero-mobile-chips" aria-label="Key Highlights">
-            <div className="m-chip">
-              <Star className="m-icon" size={14} strokeWidth={2.25} />
-              <span>{activeTab === 'sports' ? 'National Champions' : '2,000+ Clients'}</span>
-            </div>
-            <div className="m-chip">
-              <Utensils className="m-icon" size={14} strokeWidth={2.25} />
-              <span>{activeTab === 'sports' ? 'Youth & Elite Sports' : 'Indian Food-First'}</span>
-            </div>
-            <div className="m-chip">
-              <TrendingUp className="m-icon" size={14} strokeWidth={2.25} />
-              <span>Evidence-Based</span>
+                return (
+                  <div key={pillar.id} className={`pillar-row-item ${isExpanded ? 'is-expanded' : ''}`}>
+                    <button
+                      type="button"
+                      className="pillar-row-button"
+                      onClick={() => togglePillar(pillar.id)}
+                      aria-expanded={isExpanded}
+                      aria-controls={`pillar-detail-${pillar.id}`}
+                    >
+                      <div className="pillar-row-left">
+                        <span className="pillar-num">{pillar.num}</span>
+                        <span className="pillar-title">{pillar.title}</span>
+                      </div>
+                      <div className="pillar-row-right">
+                        <IconComponent size={16} strokeWidth={2.2} className="pillar-icon" aria-hidden="true" />
+                        <ChevronDown size={14} strokeWidth={2} className={`pillar-chevron ${isExpanded ? 'open' : ''}`} aria-hidden="true" />
+                      </div>
+                    </button>
+
+                    {/* Expandable Accordion Body */}
+                    <div
+                      id={`pillar-detail-${pillar.id}`}
+                      className={`pillar-content-collapse ${isExpanded ? 'expanded' : ''}`}
+                      role="region"
+                      aria-labelledby={`pillar-heading-${pillar.id}`}
+                    >
+                      <div className="pillar-content-inner">
+                        <p>{pillar.details}</p>
+                      </div>
+                    </div>
+                  </div>
+                )
+              })}
             </div>
           </div>
-        </Reveal>
+        </div>
       </div>
-    </header>
+    </section>
   )
 }

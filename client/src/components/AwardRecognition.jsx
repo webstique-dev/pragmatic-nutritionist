@@ -10,11 +10,17 @@ export default function AwardRecognition() {
     <Section
       id="award-recognition"
       width="wide"
-      bg="olive"
+      bg="cream"
       eyebrow="NATIONAL RECOGNITION & HONOURS"
       title="Celebrated at Realistic Awards 2026"
-      lead="Honouring clinical impact, evidence-based nutrition protocols, and leadership in healthcare."
+      lead="Honouring clinical impact, evidence-based nutrition protocols, and women leadership in healthcare."
     >
+      <div className="section-divider-row" aria-hidden="true">
+        <span className="divider-label">EXCELLENCE.</span>
+        <span className="divider-line" />
+        <span className="divider-label">RECOGNITION.</span>
+      </div>
+
       <div className="award-showcase-card">
         {/* Left Column: Ceremony Photo Frame */}
         <div className="award-photo-container">
@@ -26,7 +32,7 @@ export default function AwardRecognition() {
               loading="lazy"
             />
             <div className="award-photo-badge">
-              <Trophy size={16} className="text-moss" aria-hidden="true" />
+              <Trophy size={14} className="text-moss" aria-hidden="true" />
               <span>Realistic Awards 2026 • Chennai</span>
             </div>
           </div>
@@ -36,21 +42,21 @@ export default function AwardRecognition() {
         <div className="award-details-content">
           <div className="award-pill-row">
             <span className="award-category-pill">
-              <Award size={15} strokeWidth={2.5} aria-hidden="true" />
+              <Award size={14} strokeWidth={2.5} aria-hidden="true" />
               <span>9TH EDITION REALISTIC AWARDS</span>
             </span>
             <span className="award-edition-pill">
-              <Sparkles size={14} aria-hidden="true" />
-              <span>WOMEN ACHIEVERS</span>
+              <Sparkles size={13} aria-hidden="true" />
+              <span>HEALTHCARE LEADERSHIP</span>
             </span>
           </div>
 
           <h3 className="award-card-title">
-            Best Nutritionist &amp; Dietitian Award
+            Best Nutritionist &amp; <em>Dietitian Award</em>
           </h3>
 
           <p className="award-card-lead">
-            Meenu Balaji was presented with the <strong>Best Nutritionist &amp; Dietitian Award: Realistic Awards 2026, Chennai</strong>. Alongside eminent women achievers from various fields. As featured in <strong>Republic News India</strong>.
+            Presented to <strong>Meenu Balaji</strong> at the 9th Edition Realistic Awards 2026 in Chennai, celebrating distinguished achievers across healthcare and wellness.
           </p>
 
           <p className="award-card-body">
@@ -62,12 +68,11 @@ export default function AwardRecognition() {
               href={articleUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="btn btn-primary btn-award-link"
+              className="btn-editorial-text"
             >
               <span>Read Full Feature on Republic News India</span>
-              <ExternalLink size={16} strokeWidth={2.5} aria-hidden="true" />
+              <ExternalLink size={14} strokeWidth={2.25} aria-hidden="true" />
             </a>
-            <span className="award-citation-tag">As featured in Republic News India</span>
           </div>
         </div>
       </div>

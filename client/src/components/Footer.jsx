@@ -61,7 +61,7 @@ export default function Footer() {
   }
 
   return (
-    <footer className="osmo-footer bg-forest" role="contentinfo">
+    <footer className="osmo-footer editorial-footer-section" role="contentinfo">
       <div className="osmo-footer-container">
         
         {/* Top 4-Column Grid: Brand, Quick Links, Clinical Services, Contact Us */}
