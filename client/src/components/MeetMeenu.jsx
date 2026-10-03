@@ -8,7 +8,7 @@ export default function MeetMeenu() {
   const openBook = useBook()
 
   return (
-    <Section id="about-meenu" width="wide" bg="cream" className="meet-meenu-section">
+    <Section id="about-meenu" width="wide" bg="white" className="meet-meenu-section">
       <div className="section-divider-row" aria-hidden="true">
         <span className="divider-label">CLINICAL FOUNDER.</span>
         <span className="divider-line" />
@@ -43,9 +43,9 @@ export default function MeetMeenu() {
 
         {/* Right Column: Bio, Credentials & Award Feature */}
         <div className="meenu-bio-content">
-          <span className="section-eyebrow">MEET MEENU BALAJI, M.H.Sc (Food Science & Nutrition)</span>
+          <span className="section-eyebrow">Meet Meenu Balaji &bull; M.H.Sc (Food Science &amp; Nutrition)</span>
           <h2 className="meenu-heading">
-            Clinical Care Grounded in <em>Real-Life Practice</em>
+            Clinical Care Grounded in <span className="nowrap-text"><em>Real&#8209;Life Practice</em></span>
           </h2>
 
           <div className="meenu-paragraphs">

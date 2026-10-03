@@ -14,7 +14,7 @@ export default function Faq({ tight }) {
     <Section
       id="faq"
       width="wide"
-      bg="cream"
+      bg="brand"
       tight={tight}
       className="faq-section"
     >

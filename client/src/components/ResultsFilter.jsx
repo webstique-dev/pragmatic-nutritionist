@@ -17,7 +17,7 @@ export default function ResultsFilter({ title = 'Clinical Outcomes & Patient Sto
     <Section
       id="results"
       width="wide"
-      bg="olive"
+      bg="white"
       eyebrow="DOCUMENTED PATIENT PROGRESS"
       title={title}
       lead="Real client progress tracked across digestive recovery, sustainable metabolic health, hormonal balance, and athletic milestones."
@@ -71,7 +71,7 @@ export default function ResultsFilter({ title = 'Clinical Outcomes & Patient Sto
         {filteredResults.map((res, idx) => (
           <article className="result-card" key={res.name + idx}>
             <div className="result-card-header">
-              <span className="result-tag">
+              <span className={`result-tag tag-${res.t.toLowerCase().replace(/\s+/g, '-')}`}>
                 {res.t.toUpperCase()}
               </span>
               <span className="result-rating-stars">

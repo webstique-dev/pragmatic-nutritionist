@@ -20,7 +20,7 @@ export default function CoreAreas() {
     <Section
       id="core-areas"
       width="wide"
-      bg="cream"
+      bg="warm"
       eyebrow="CLINICAL PILLARS"
       title="Two Core Disciplines of Practice"
       lead="Targeted gut restoration and high-performance sports nutrition grounded in clinical biochemistry and tailored for real lives."

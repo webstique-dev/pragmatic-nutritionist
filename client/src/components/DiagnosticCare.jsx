@@ -8,12 +8,12 @@ export default function DiagnosticCare() {
       case 0:
         return <Droplet size={20} strokeWidth={2} className="text-moss" />
       case 1:
-        return <Microscope size={20} strokeWidth={2} className="text-moss" />
+        return <Microscope size={20} strokeWidth={2} style={{ color: 'var(--slate-700)' }} />
       case 2:
-        return <Dna size={20} strokeWidth={2} className="text-moss" />
+        return <Dna size={20} strokeWidth={2} className="text-coral" />
       case 3:
       default:
-        return <FlaskConical size={20} strokeWidth={2} className="text-moss" />
+        return <FlaskConical size={20} strokeWidth={2} className="text-amber" />
     }
   }
 
@@ -21,7 +21,7 @@ export default function DiagnosticCare() {
     <Section
       id="diagnostics"
       width="wide"
-      bg="olive"
+      bg="slate"
       eyebrow="DATA-LED CLINICAL NUTRITION"
       title="Built on Data, Not Assumptions"
       lead="Most nutrition advice is generic. Ours begins with clinical biomarker analysis, coordinating targeted tests so every recommendation is biochemically sound."

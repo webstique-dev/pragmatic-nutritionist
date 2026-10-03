@@ -10,7 +10,7 @@ export default function CtaBand({
   const openBook = useBook()
 
   return (
-    <Section width="wide" bg="olive" className="cta-editorial-band-section">
+    <Section width="wide" bg="dark" className="cta-editorial-band-section">
       <div className="section-divider-row" aria-hidden="true">
         <span className="divider-label">DISCOVERY.</span>
         <span className="divider-line" />

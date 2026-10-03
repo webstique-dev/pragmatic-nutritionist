@@ -79,7 +79,7 @@ export default function Champions() {
     <Section
       id="champions"
       width="full"
-      bg="cream"
+      bg="dark"
       eyebrow="SPORTS NUTRITION"
       title="Performance That Speaks"
       lead="Nutrition Support for Athletes competing at National & International events"

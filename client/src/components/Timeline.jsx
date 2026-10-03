@@ -31,7 +31,7 @@ export default function Timeline() {
     <Section
       id="how-it-works"
       width="wide"
-      bg="cream"
+      bg="brand"
       eyebrow="STRUCTURED METHODOLOGY"
       title="Your Path to Lasting Vitality"
       lead="A clear, three-phase clinical process focused on root-cause diagnosis, habit coaching, and continuous support."

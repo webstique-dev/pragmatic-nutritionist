@@ -18,6 +18,8 @@ const PILLARS = [
     num: '(01)',
     title: 'Clinical Gut Health',
     icon: Sprout,
+    colorClass: 'text-moss',
+    numColor: 'var(--emerald-600)',
     details: 'Root-cause protocols for IBS, chronic bloating, acidity, GERD, constipation, and SIBO without extreme elimination diets.'
   },
   {
@@ -25,6 +27,8 @@ const PILLARS = [
     num: '(02)',
     title: 'Sports Nutrition',
     icon: Zap,
+    colorClass: 'text-amber',
+    numColor: 'var(--amber-600)',
     details: 'Match-day fuelling, endurance strategies, body composition, and recovery for teen, competitive, and national athletes.'
   },
   {
@@ -32,6 +36,8 @@ const PILLARS = [
     num: '(03)',
     title: 'Metabolic & Hormonal Care',
     icon: Activity,
+    colorClass: 'text-coral',
+    numColor: 'var(--coral-500)',
     details: 'Targeted biomarker nutrition for PCOS, Type-2 Diabetes reversal, thyroid balance, and sustainable metabolic fat loss.'
   },
   {
@@ -39,6 +45,8 @@ const PILLARS = [
     num: '(04)',
     title: 'Everyday Indian Food',
     icon: Utensils,
+    colorClass: 'text-moss',
+    numColor: 'var(--emerald-600)',
     details: 'No generic crash diets. Every plan is rooted in your home kitchen—dal, rice, roti, sambar, and authentic regional cooking.'
   }
 ]
@@ -164,11 +172,11 @@ export default function Hero() {
                       aria-controls={`pillar-detail-${pillar.id}`}
                     >
                       <div className="pillar-row-left">
-                        <span className="pillar-num">{pillar.num}</span>
+                        <span className="pillar-num" style={{ color: pillar.numColor }}>{pillar.num}</span>
                         <span className="pillar-title">{pillar.title}</span>
                       </div>
                       <div className="pillar-row-right">
-                        <IconComponent size={16} strokeWidth={2.2} className="pillar-icon" aria-hidden="true" />
+                        <IconComponent size={16} strokeWidth={2.2} className={`pillar-icon ${pillar.colorClass}`} aria-hidden="true" />
                         <ChevronDown size={14} strokeWidth={2} className={`pillar-chevron ${isExpanded ? 'open' : ''}`} aria-hidden="true" />
                       </div>
                     </button>

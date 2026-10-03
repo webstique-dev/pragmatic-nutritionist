@@ -8,12 +8,12 @@ export default function WhyPragmatic() {
       case 0:
         return <Search size={20} strokeWidth={2} className="text-moss" />
       case 1:
-        return <Users size={20} strokeWidth={2} className="text-moss" />
+        return <Users size={20} strokeWidth={2} className="text-amber" />
       case 2:
-        return <TrendingUp size={20} strokeWidth={2} className="text-moss" />
+        return <TrendingUp size={20} strokeWidth={2} className="text-coral" />
       case 3:
       default:
-        return <Globe size={20} strokeWidth={2} className="text-moss" />
+        return <Globe size={20} strokeWidth={2} style={{ color: 'var(--slate-700)' }} />
     }
   }
 
@@ -21,7 +21,7 @@ export default function WhyPragmatic() {
     <Section
       id="why-pragmatic"
       width="wide"
-      bg="olive"
+      bg="brand"
       eyebrow="CLINICAL PHILOSOPHY"
       title="The Pragmatic Approach"
       lead="Built for real life: non-extreme, symptom-led, and centered around practical Indian home meals."

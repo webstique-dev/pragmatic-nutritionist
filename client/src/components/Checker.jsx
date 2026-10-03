@@ -32,7 +32,7 @@ export default function Checker() {
   const strokeDashoffset = circumference - (score / 100) * circumference
 
   return (
-    <Section id="checker" width="wide" bg="olive" className="checker-section">
+    <Section id="checker" width="wide" bg="warm" className="checker-section">
       <div className="section-divider-row" aria-hidden="true">
         <span className="divider-label">SELF ASSESSMENT.</span>
         <span className="divider-line" />
