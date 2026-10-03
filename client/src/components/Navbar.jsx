@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
 import { ChevronDown, X, ArrowRight } from 'lucide-react'
 import { MENU } from '../data/site'
@@ -11,6 +11,7 @@ export default function Navbar() {
   const [activeDropdown, setActiveDropdown] = useState(null)
   const [openMobileAccordion, setOpenMobileAccordion] = useState(null)
   const [prevPathname, setPrevPathname] = useState('')
+  const timeoutRef = useRef(null)
   const openBook = useBook()
   const location = useLocation()
 
@@ -20,6 +21,13 @@ export default function Navbar() {
     if (mobileOpen) setMobileOpen(false)
     if (activeDropdown) setActiveDropdown(null)
   }
+
+  // Clear any pending dropdown close timeout on unmount
+  useEffect(() => {
+    return () => {
+      if (timeoutRef.current) clearTimeout(timeoutRef.current)
+    }
+  }, [])
 
   // Track scroll position for navbar background transition
   useEffect(() => {
@@ -35,6 +43,7 @@ export default function Navbar() {
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.key === 'Escape') {
+        if (timeoutRef.current) clearTimeout(timeoutRef.current)
         setMobileOpen(false)
         setActiveDropdown(null)
       }
@@ -55,7 +64,28 @@ export default function Navbar() {
     setOpenMobileAccordion(openMobileAccordion === to ? null : to)
   }
 
+  const handleMouseEnter = (to) => {
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current)
+      timeoutRef.current = null
+    }
+    setActiveDropdown(to)
+  }
+
+  const handleMouseLeave = () => {
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current)
+    }
+    timeoutRef.current = setTimeout(() => {
+      setActiveDropdown(null)
+    }, 150)
+  }
+
   const closeAll = () => {
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current)
+      timeoutRef.current = null
+    }
     setMobileOpen(false)
     setActiveDropdown(null)
   }
@@ -78,8 +108,8 @@ export default function Navbar() {
                 <li
                   key={item.to}
                   className={`nav-item ${hasChildren ? 'has-dropdown' : ''}`}
-                  onMouseEnter={() => hasChildren && setActiveDropdown(item.to)}
-                  onMouseLeave={() => hasChildren && setActiveDropdown(null)}
+                  onMouseEnter={() => hasChildren && handleMouseEnter(item.to)}
+                  onMouseLeave={() => hasChildren && handleMouseLeave()}
                 >
                   <NavLink
                     to={item.to}

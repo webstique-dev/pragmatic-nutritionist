@@ -650,6 +650,14 @@ a.btn {
   border-radius: var(--r-pill);
 }
 
+.nav-caret {
+  transition: transform 0.2s var(--ease-reveal);
+}
+.nav-caret.open,
+.nav-item:hover .nav-caret {
+  transform: rotate(180deg);
+}
+
 .mega-dropdown {
   position: absolute;
   top: calc(100% + 8px);
@@ -667,7 +675,17 @@ a.btn {
   transition: all 0.2s var(--ease-reveal);
   z-index: 60;
 }
+.mega-dropdown::before {
+  content: '';
+  position: absolute;
+  top: -16px;
+  left: 0;
+  right: 0;
+  height: 16px;
+  background: transparent;
+}
 .mega-dropdown.show,
+.nav-item:hover .mega-dropdown,
 .nav-item:focus-within .mega-dropdown {
   opacity: 1;
   visibility: visible;
