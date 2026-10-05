@@ -6,14 +6,14 @@ export default function WhyPragmatic() {
   const getIcon = (idx) => {
     switch (idx) {
       case 0:
-        return <Search size={20} strokeWidth={2} className="text-moss" />
+        return <Search size={20} strokeWidth={2} className="text-primary" />
       case 1:
-        return <Users size={20} strokeWidth={2} className="text-amber" />
+        return <Users size={20} strokeWidth={2} className="text-secondary" />
       case 2:
-        return <TrendingUp size={20} strokeWidth={2} className="text-coral" />
+        return <TrendingUp size={20} strokeWidth={2} className="text-primary" />
       case 3:
       default:
-        return <Globe size={20} strokeWidth={2} style={{ color: 'var(--slate-700)' }} />
+        return <Globe size={20} strokeWidth={2} className="text-secondary" />
     }
   }
 
@@ -21,7 +21,7 @@ export default function WhyPragmatic() {
     <Section
       id="why-pragmatic"
       width="wide"
-      bg="brand"
+      bg="white"
       eyebrow="CLINICAL PHILOSOPHY"
       title="The Pragmatic Approach"
       lead="Built for real life: non-extreme, symptom-led, and centered around practical Indian home meals."

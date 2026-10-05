@@ -27,12 +27,12 @@ export default function Checker() {
       ? 'Your gut is showing clear warning signs. Addressing triggers now prevents chronic distress.'
       : 'Your gut is under significant stress. A structured, food-first clinical protocol is strongly advised.'
 
-  const bandColor = score >= 80 ? 'var(--forest)' : score >= 55 ? 'var(--moss)' : '#8b3a3a'
+  const bandColor = score >= 80 ? 'var(--color-primary)' : score >= 55 ? 'var(--color-primary-hover)' : 'var(--color-secondary)'
   const circumference = 2 * Math.PI * 46
   const strokeDashoffset = circumference - (score / 100) * circumference
 
   return (
-    <Section id="checker" width="wide" bg="warm" className="checker-section">
+    <Section id="checker" width="wide" bg="white" className="checker-section">
       <div className="section-divider-row" aria-hidden="true">
         <span className="divider-label">SELF ASSESSMENT.</span>
         <span className="divider-line" />
@@ -52,21 +52,21 @@ export default function Checker() {
 
           <div className="checker-benefits-list">
             <div className="benefit-item">
-              <CheckCircle2 size={18} strokeWidth={2.25} className="benefit-check text-moss" aria-hidden="true" />
+              <CheckCircle2 size={18} strokeWidth={2.25} className="benefit-check text-primary" aria-hidden="true" />
               <div>
                 <strong>100% TAILORED TO INDIAN FOOD</strong>
                 <p>Rooted in everyday home meals like dal, roti, rice, sambar, curd, and millets.</p>
               </div>
             </div>
             <div className="benefit-item">
-              <CheckCircle2 size={18} strokeWidth={2.25} className="benefit-check text-moss" aria-hidden="true" />
+              <CheckCircle2 size={18} strokeWidth={2.25} className="benefit-check text-primary" aria-hidden="true" />
               <div>
                 <strong>NO RESTRICTIVE CRASH DIETS</strong>
                 <p>We identify true trigger foods rather than cutting out entire food groups blindly.</p>
               </div>
             </div>
             <div className="benefit-item">
-              <CheckCircle2 size={18} strokeWidth={2.25} className="benefit-check text-moss" aria-hidden="true" />
+              <CheckCircle2 size={18} strokeWidth={2.25} className="benefit-check text-primary" aria-hidden="true" />
               <div>
                 <strong>DIRECT CLINICAL INSIGHTS</strong>
                 <p>Designed with clinical evidence and 14+ years of gut health expertise by Meenu Balaji.</p>
@@ -75,7 +75,7 @@ export default function Checker() {
           </div>
 
           <div className="checker-quick-badge">
-            <Clock size={16} strokeWidth={2.25} className="badge-icon text-moss" aria-hidden="true" />
+            <Clock size={16} strokeWidth={2.25} className="badge-icon text-primary" aria-hidden="true" />
             <span>Takes under 1 minute • 100% Free & Confidential</span>
           </div>
         </div>
@@ -162,7 +162,7 @@ export default function Checker() {
                 </div>
 
                 <div className="score-summary">
-                  <span className="score-badge" style={{ color: '#ffffff', backgroundColor: bandColor }}>
+                  <span className="score-badge" style={{ color: 'var(--color-surface)', backgroundColor: bandColor }}>
                     {score >= 80 ? 'OPTIMAL GUT BALANCE' : score >= 55 ? 'MILD SENSITIVITY' : 'NEEDS CLINICAL FOCUS'}
                   </span>
                   <p className="score-band-text">{band}</p>

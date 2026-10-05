@@ -18,8 +18,8 @@ const PILLARS = [
     num: '(01)',
     title: 'Clinical Gut Health',
     icon: Sprout,
-    colorClass: 'text-moss',
-    numColor: 'var(--emerald-600)',
+    colorClass: 'text-primary',
+    numColor: 'var(--color-primary)',
     details: 'Root-cause protocols for IBS, chronic bloating, acidity, GERD, constipation, and SIBO without extreme elimination diets.'
   },
   {
@@ -27,8 +27,8 @@ const PILLARS = [
     num: '(02)',
     title: 'Sports Nutrition',
     icon: Zap,
-    colorClass: 'text-amber',
-    numColor: 'var(--amber-600)',
+    colorClass: 'text-secondary',
+    numColor: 'var(--color-secondary)',
     details: 'Match-day fuelling, endurance strategies, body composition, and recovery for teen, competitive, and national athletes.'
   },
   {
@@ -36,8 +36,8 @@ const PILLARS = [
     num: '(03)',
     title: 'Metabolic & Hormonal Care',
     icon: Activity,
-    colorClass: 'text-coral',
-    numColor: 'var(--coral-500)',
+    colorClass: 'text-primary',
+    numColor: 'var(--color-primary)',
     details: 'Targeted biomarker nutrition for PCOS, Type-2 Diabetes reversal, thyroid balance, and sustainable metabolic fat loss.'
   },
   {
@@ -45,8 +45,8 @@ const PILLARS = [
     num: '(04)',
     title: 'Everyday Indian Food',
     icon: Utensils,
-    colorClass: 'text-moss',
-    numColor: 'var(--emerald-600)',
+    colorClass: 'text-secondary',
+    numColor: 'var(--color-secondary)',
     details: 'No generic crash diets. Every plan is rooted in your home kitchen—dal, rice, roti, sambar, and authentic regional cooking.'
   }
 ]

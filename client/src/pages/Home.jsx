@@ -55,8 +55,13 @@ export default function Home() {
 
       {/* 12. Final Action Band */}
       <CtaBand
-        title="Ready to Transform Your Nutrition?"
-        text="From gut recovery to peak athletic performance: personalised plans built on real clinical expertise."
+        eyebrow="START YOUR JOURNEY"
+        headline="Start With A Plan"
+        headlineHighlight="Built Around You."
+        text="Personalised care, evidence-led protocols, and expert guidance designed around your goals."
+        primaryCtaText="Book Your Free Discovery Call"
+        secondaryCtaText="Chat on WhatsApp"
+        trustStatement="Personalised care • Evidence-led • Available globally"
       />
     </>
   )

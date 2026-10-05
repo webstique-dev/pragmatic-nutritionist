@@ -154,48 +154,48 @@ export default function GutAssessmentPage() {
         level: 'optimal',
         label: 'THRIVING & BALANCED GUT',
         shortDesc: 'Your digestive tract is resilient and functioning with minimal irritation.',
-        color: 'var(--wa)',
-        bgTint: '#eaf7ef',
-        borderColor: '#25a15a',
+        color: 'var(--color-primary)',
+        bgTint: 'var(--color-primary-soft)',
+        borderColor: 'var(--color-primary)',
         icon: Smile,
         emoji: '😄',
         mood: 'Calm, Energized & Harmonious',
         actionAdvice:
           'Your digestive system is happy and functioning well! Continue focusing on diverse fiber, seasonal Indian foods, and hydration to preserve your microbiome strength.',
-        badgeColor: '#1d3326',
-        badgeBg: '#d3f2df'
+        badgeColor: 'var(--color-primary)',
+        badgeBg: 'var(--color-primary-light)'
       }
     } else if (calculatedScore >= 55) {
       tier = {
         level: 'warning',
         label: 'MILD GUT DISTRESS & SENSITIVITY',
         shortDesc: 'Early warning signs detected. Food triggers or low enzyme activity are disrupting digestion.',
-        color: '#d97706',
-        bgTint: '#fef3c7',
-        borderColor: '#d97706',
+        color: 'var(--color-secondary)',
+        bgTint: 'var(--color-secondary-soft)',
+        borderColor: 'var(--color-secondary)',
         icon: Meh,
         emoji: '😐',
         mood: 'Sluggish, Bloated & Irritated',
         actionAdvice:
           'Your gut is showing clear distress signals. Targeted meal sequencing and identifying hidden food triggers will prevent chronic IBS or metabolic fatigue.',
-        badgeColor: '#92400e',
-        badgeBg: '#fef3c7'
+        badgeColor: 'var(--color-secondary)',
+        badgeBg: 'var(--color-secondary-soft)'
       }
     } else {
       tier = {
         level: 'critical',
         label: 'HIGH GUT STRESS & DYSBIOSIS',
         shortDesc: 'Significant gastrointestinal stress and inflammation impacting daily energy and comfort.',
-        color: '#dc2626',
-        bgTint: '#fee2e2',
-        borderColor: '#dc2626',
+        color: 'var(--color-secondary)',
+        bgTint: 'var(--color-secondary-soft)',
+        borderColor: 'var(--color-secondary)',
         icon: Frown,
         emoji: '😟',
         mood: 'Distressed, Inflamed & Overwhelmed',
         actionAdvice:
           'Your gut barrier is under serious stress, likely disrupting nutrient absorption, hormone balance, and daily vitality. A clinical, food-first protocol is strongly recommended.',
-        badgeColor: '#991b1b',
-        badgeBg: '#fee2e2'
+        badgeColor: 'var(--color-secondary)',
+        badgeBg: 'var(--color-secondary-subtle)'
       }
     }
 
@@ -682,7 +682,7 @@ export default function GutAssessmentPage() {
                       className="metric-progress-fill"
                       style={{
                         width: `${digestionScore}%`,
-                        backgroundColor: digestionScore >= 75 ? 'var(--wa)' : digestionScore >= 50 ? '#d97706' : '#dc2626'
+                        backgroundColor: digestionScore >= 75 ? 'var(--color-primary)' : 'var(--color-secondary)'
                       }}
                     />
                   </div>
@@ -691,7 +691,7 @@ export default function GutAssessmentPage() {
                 <div className="metric-pill-card">
                   <div className="metric-label-row">
                     <span className="metric-name">
-                      <HeartPulse size={16} className="text-moss" />
+                      <HeartPulse size={16} className="text-primary" />
                       Gut-Brain Axis & Energy
                     </span>
                     <span className="metric-val">{gutBrainScore}%</span>
@@ -701,7 +701,7 @@ export default function GutAssessmentPage() {
                       className="metric-progress-fill"
                       style={{
                         width: `${gutBrainScore}%`,
-                        backgroundColor: gutBrainScore >= 75 ? 'var(--wa)' : gutBrainScore >= 50 ? '#d97706' : '#dc2626'
+                        backgroundColor: gutBrainScore >= 75 ? 'var(--color-primary)' : 'var(--color-secondary)'
                       }}
                     />
                   </div>
@@ -710,7 +710,7 @@ export default function GutAssessmentPage() {
                 <div className="metric-pill-card">
                   <div className="metric-label-row">
                     <span className="metric-name">
-                      <Flame size={16} className="text-moss" />
+                      <Flame size={16} className="text-primary" />
                       Metabolic & Systemic Balance
                     </span>
                     <span className="metric-val">{metabolicScore}%</span>
@@ -720,7 +720,7 @@ export default function GutAssessmentPage() {
                       className="metric-progress-fill"
                       style={{
                         width: `${metabolicScore}%`,
-                        backgroundColor: metabolicScore >= 75 ? 'var(--wa)' : metabolicScore >= 50 ? '#d97706' : '#dc2626'
+                        backgroundColor: metabolicScore >= 75 ? 'var(--color-primary)' : 'var(--color-secondary)'
                       }}
                     />
                   </div>

@@ -170,8 +170,11 @@ export const RESULTS = [
     role: 'Wellington Sports Medicine, New Zealand',
     rating: 5,
     big: 'Adolescent athletic performance frameworks',
+    metric: 'Frameworks Applied',
+    metricLabel: 'Adolescent Clinical Protocol',
     quote: 'Meenu is a highly competent nutritionist, who has the ability to convey complex information into education material that patients can understand and will endeavour to comply with. We were very impressed with her depth of knowledge in adolescent nutrition and its direct relation to athletic performance. We have applied her frameworks with great effect in our adolescent population.',
-    p: 'Wellington Sports Medicine, New Zealand'
+    p: 'Wellington Sports Medicine, New Zealand',
+    featured: true
   },
   {
     t: 'Weight Loss',
@@ -179,6 +182,8 @@ export const RESULTS = [
     role: 'Media Design Professional, Chennai',
     rating: 5,
     big: 'Lost 14 kg in 12 weeks',
+    metric: '14 kg',
+    metricLabel: 'Weight Loss in 12 Wks',
     quote: 'I lost 14 kg in 12 weeks. As a working professional, I eat out every day. But Meenu gave me practical strategies that actually worked. I would recommend her to anyone wanting real, sustainable weight loss.',
     p: 'Media Design Professional, Chennai'
   },
@@ -188,6 +193,8 @@ export const RESULTS = [
     role: 'Chennai',
     rating: 5,
     big: 'Acidity & severe gut issues resolved',
+    metric: '12 Weeks',
+    metricLabel: 'Custom Gut Protocol',
     quote: 'Consulted Meenu for severe acidity and gut issues. She gave a tailor-made 12-week plan around my preferences, the changes were minimal but the results were remarkable. Worth every rupee.',
     p: 'Tailor-made 12-week gut plan, Chennai'
   },
@@ -197,6 +204,8 @@ export const RESULTS = [
     role: 'Software Professional, Bengaluru',
     rating: 5,
     big: 'PCOS symptoms improved in 5–6 weeks',
+    metric: '5–6 Wks',
+    metricLabel: 'PCOS Symptom Relief',
     quote: 'My PCOS symptoms improved in just 5–6 weeks. No more migraines. My menstrual health is better, acne reduced, and the plan was completely flexible around my life. My food cravings reduced too.',
     p: 'Software Professional, Bengaluru'
   },
@@ -206,6 +215,8 @@ export const RESULTS = [
     role: 'Trichy',
     rating: 5,
     big: 'HbA1c reduced from 7.1 to 6.8 in 4 weeks',
+    metric: '7.1 → 6.8',
+    metricLabel: 'HbA1c in 4 Weeks',
     quote: "HbA1C reduced from 7.1 to 6.8 in just 4 weeks. I joined the 3 months diabetes plan with Meenu. I'm very happy with the results. The diet was simple and easy.",
     p: '3 Months Diabetes Plan, Trichy'
   },
@@ -215,6 +226,8 @@ export const RESULTS = [
     role: 'Homeopathy Doctor, Bangalore',
     rating: 5,
     big: 'National Gold & PB improved from 27.8s to 27.02s',
+    metric: '27.8s → 27.02s',
+    metricLabel: 'PB & National Gold',
     quote: "Meenu has been a constant guide and a major contributor to Charitha's national gold. Her nutrition strategy helped improve Charitha's PB from 27.8s to 27.02s, outperforming Olympic-level swimmers.",
     p: 'National Gold Swimmer Nutrition Strategy'
   }

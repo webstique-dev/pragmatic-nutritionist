@@ -8,7 +8,7 @@ export default function MeetMeenu() {
   const openBook = useBook()
 
   return (
-    <Section id="about-meenu" width="wide" bg="white" className="meet-meenu-section">
+    <Section id="about-meenu" width="wide" bg="brand" className="meet-meenu-section">
       <div className="section-divider-row" aria-hidden="true">
         <span className="divider-label">CLINICAL FOUNDER.</span>
         <span className="divider-line" />
@@ -26,7 +26,7 @@ export default function MeetMeenu() {
               aspectRatio="4/5"
             >
               <div className="meenu-floating-tag">
-                <Sparkles size={14} className="tag-sparkle text-moss" />
+                <Sparkles size={14} className="tag-sparkle text-primary" />
                 <span>FOUNDER & CLINICAL SPECIALIST</span>
               </div>
             </Photo>
@@ -59,7 +59,7 @@ export default function MeetMeenu() {
 
           <div className="meenu-award-card">
             <div className="award-trophy" aria-hidden="true">
-              <Trophy size={24} strokeWidth={2} className="text-moss" />
+              <Trophy size={24} strokeWidth={2} className="text-secondary" />
             </div>
             <div className="award-text">
               <div className="award-header-row">
@@ -81,19 +81,19 @@ export default function MeetMeenu() {
 
           <div className="meenu-badges-grid" aria-label="Credentials and achievements">
             <div className="credential-badge">
-              <CheckCircle2 size={15} strokeWidth={2.5} className="badge-bullet text-moss" />
+              <CheckCircle2 size={15} strokeWidth={2.5} className="badge-bullet text-primary" />
               <span>Registered Clinical Nutritionist (14+ Years)</span>
             </div>
             <div className="credential-badge">
-              <CheckCircle2 size={15} strokeWidth={2.5} className="badge-bullet text-moss" />
+              <CheckCircle2 size={15} strokeWidth={2.5} className="badge-bullet text-primary" />
               <span>M.H.Sc Food Science &amp; Nutrition</span>
             </div>
             <div className="credential-badge">
-              <CheckCircle2 size={15} strokeWidth={2.5} className="badge-bullet text-moss" />
+              <CheckCircle2 size={15} strokeWidth={2.5} className="badge-bullet text-primary" />
               <span>ICAR JRF &amp; UGC NET JRF Qualified</span>
             </div>
             <div className="credential-badge">
-              <CheckCircle2 size={15} strokeWidth={2.5} className="badge-bullet text-moss" />
+              <CheckCircle2 size={15} strokeWidth={2.5} className="badge-bullet text-primary" />
               <span>Peer Reviewer, European Journal of Nutrition</span>
             </div>
           </div>
