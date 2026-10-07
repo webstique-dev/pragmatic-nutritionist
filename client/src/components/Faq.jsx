@@ -1,5 +1,6 @@
 import { useState } from 'react'
-import { Plus, ArrowRight, MessageCircle } from 'lucide-react'
+import { Plus, ArrowRight } from 'lucide-react'
+import WhatsAppIcon from './WhatsAppIcon'
 import { FAQ, wa } from '../data/site'
 import Section from './Section'
 
@@ -44,7 +45,7 @@ export default function Faq({ tight }) {
               target="_blank"
               rel="noreferrer"
             >
-              <MessageCircle size={15} strokeWidth={2.25} />
+              <WhatsAppIcon size={16} />
               <span>Ask Meenu on WhatsApp</span>
               <ArrowRight size={14} strokeWidth={2.25} aria-hidden="true" />
             </a>

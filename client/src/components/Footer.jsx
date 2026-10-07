@@ -1,4 +1,5 @@
 import { Link, useLocation } from 'react-router-dom'
+import WhatsAppIcon from './WhatsAppIcon'
 import {
   wa,
   PHONE,
@@ -86,9 +87,7 @@ export default function Footer() {
                 rel="noreferrer"
                 aria-label="Direct WhatsApp Inquiry with Meenu Balaji"
               >
-                <svg className="osmo-btn-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.25" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                  <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z" />
-                </svg>
+                <WhatsAppIcon size={16} className="osmo-btn-icon" />
                 <span>WHATSAPP INQUIRY</span>
                 <svg className="osmo-btn-arrow" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                   <line x1="7" y1="17" x2="17" y2="7" />

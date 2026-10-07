@@ -7,7 +7,6 @@ import NoiseOverlay from './components/NoiseOverlay'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import StickyCta from './components/StickyCta'
-import Checker from './components/Checker'
 import ResultsFilter from './components/ResultsFilter'
 import Faq from './components/Faq'
 import GutAssessmentPage from './pages/GutAssessmentPage'
@@ -44,6 +43,8 @@ export default function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/gut-health-checker" element={<GutAssessmentPage />} />
+            <Route path="/gut-health-assessment" element={<GutAssessmentPage />} />
+            <Route path="/gut-assessment" element={<GutAssessmentPage />} />
             {PAGES.map((p) => (
               <Route key={p.to} path={p.to} element={element(p)} />
             ))}

@@ -1,5 +1,6 @@
 import React from 'react'
-import { MessageCircle, ArrowRight, ShieldCheck, CheckCircle2, HeartPulse } from 'lucide-react'
+import { ArrowRight, ShieldCheck, CheckCircle2, HeartPulse } from 'lucide-react'
+import WhatsAppIcon from './WhatsAppIcon'
 import { useBook } from '../context/bookContext'
 import { wa } from '../data/site'
 import Section from './Section'
@@ -68,7 +69,7 @@ export default function CtaBand({
                 rel="noreferrer"
                 aria-label={secondaryCtaText}
               >
-                <MessageCircle size={16} strokeWidth={2.2} aria-hidden="true" />
+                <WhatsAppIcon size={17} />
                 <span>{secondaryCtaText}</span>
               </a>
             </div>

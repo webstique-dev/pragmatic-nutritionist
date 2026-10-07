@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
-import { X, ArrowLeft, ArrowRight, MessageCircle, CheckCircle2, Circle } from 'lucide-react'
+import { X, ArrowLeft, ArrowRight, CheckCircle2, Circle } from 'lucide-react'
+import WhatsAppIcon from './WhatsAppIcon'
 import { GOALS, wa } from '../data/site'
 
 export default function BookingModal({ onClose }) {
@@ -69,6 +70,7 @@ export default function BookingModal({ onClose }) {
                   return (
                     <button
                       key={goal}
+                      type="button"
                       className={`modal-opt-btn ${isSelected ? 'is-selected' : ''}`}
                       onClick={() => {
                         setService(goal)
@@ -99,6 +101,7 @@ export default function BookingModal({ onClose }) {
                 {allSlots.map((timeSlot) => (
                   <button
                     key={timeSlot}
+                    type="button"
                     className={`slot-chip ${slot === timeSlot ? 'is-selected' : ''}`}
                     onClick={() => setSlot(timeSlot)}
                   >
@@ -109,16 +112,17 @@ export default function BookingModal({ onClose }) {
 
               <div className="modal-action-row">
                 <button
-                  className="btn btn-primary btn-block"
+                  type="button"
+                  className="btn btn-primary btn-block modal-primary-cta"
                   disabled={!slot}
                   onClick={() => setStep(2)}
                 >
                   <span>Continue to Confirmation</span>
                   <ArrowRight size={16} strokeWidth={2.5} />
                 </button>
-                <button className="btn btn-ghost btn-block" onClick={() => setStep(0)}>
-                  <ArrowLeft size={14} strokeWidth={2.5} style={{ display: 'inline', verticalAlign: 'middle', marginRight: '6px' }} />
-                  Back
+                <button type="button" className="btn btn-ghost btn-block modal-back-btn" onClick={() => setStep(0)}>
+                  <ArrowLeft size={15} strokeWidth={2.5} />
+                  <span>Back</span>
                 </button>
               </div>
             </div>
@@ -127,10 +131,12 @@ export default function BookingModal({ onClose }) {
           {step === 2 && (
             <div className="modal-step-pane">
               <h3 id="modal-step-title" className="modal-heading">Confirm your discovery call</h3>
+              <p className="modal-sub">Review your session details and enter your name to dispatch your invitation.</p>
+
               <div className="booking-summary-card">
                 <div className="summary-row">
                   <span className="summary-label">Goal:</span>
-                  <strong className="summary-value">{service}</strong>
+                  <strong className="summary-value">{service || 'Gut Health & Clinical Care'}</strong>
                 </div>
                 <div className="summary-row">
                   <span className="summary-label">Slot:</span>
@@ -142,32 +148,34 @@ export default function BookingModal({ onClose }) {
                 </div>
               </div>
 
-              <div className="input-group" style={{ marginTop: 16 }}>
-                <label htmlFor="booking-name">Your Full Name</label>
+              <div className="modal-form-group">
+                <label htmlFor="booking-name" className="modal-input-label">Your Full Name *</label>
                 <input
                   id="booking-name"
                   type="text"
-                  placeholder="Enter your name"
+                  className="modal-text-input"
+                  placeholder="e.g. Ananya Iyer"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   autoFocus
+                  required
                 />
               </div>
 
-              <div className="modal-action-row" style={{ marginTop: 20 }}>
+              <div className="modal-action-row">
                 <a
-                  className={`btn btn-wa btn-block btn-no-underline ${!name.trim() ? 'disabled' : ''}`}
-                  href={wa(`Hi Meenu, I would like to confirm my free discovery call.\n• Goal: ${service}\n• Slot: ${slot}\n• Name: ${name}`)}
+                  className={`btn btn-wa btn-block btn-no-underline modal-wa-cta ${!name.trim() ? 'disabled' : ''}`}
+                  href={wa(`Hi Meenu, I would like to confirm my free discovery call.\n• Goal: ${service || 'Gut Health'}\n• Slot: ${slot}\n• Name: ${name}`)}
                   target="_blank"
                   rel="noreferrer"
-                  style={{ pointerEvents: name.trim() ? 'auto' : 'none', opacity: name.trim() ? 1 : 0.4 }}
+                  style={{ pointerEvents: name.trim() ? 'auto' : 'none', opacity: name.trim() ? 1 : 0.45 }}
                 >
-                  <MessageCircle size={18} strokeWidth={2.25} />
+                  <WhatsAppIcon size={18} />
                   <span>Confirm on WhatsApp</span>
                 </a>
-                <button className="btn btn-ghost btn-block" onClick={() => setStep(1)}>
-                  <ArrowLeft size={14} strokeWidth={2.5} style={{ display: 'inline', verticalAlign: 'middle', marginRight: '6px' }} />
-                  Change Slot
+                <button type="button" className="btn btn-ghost btn-block modal-back-btn" onClick={() => setStep(1)}>
+                  <ArrowLeft size={15} strokeWidth={2.5} />
+                  <span>Change Slot</span>
                 </button>
               </div>
             </div>
@@ -177,3 +185,4 @@ export default function BookingModal({ onClose }) {
     </div>
   )
 }
+

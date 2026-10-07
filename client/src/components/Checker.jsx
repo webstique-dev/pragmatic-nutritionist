@@ -5,9 +5,9 @@ import {
   ArrowRight,
   ArrowLeft,
   RotateCcw,
-  Sparkles,
-  MessageCircle
+  Sparkles
 } from 'lucide-react'
+import WhatsAppIcon from './WhatsAppIcon'
 import { QUIZ, GOALS, wa } from '../data/site'
 import Section from './Section'
 
@@ -247,7 +247,7 @@ export default function Checker() {
                       target="_blank"
                       rel="noreferrer"
                     >
-                      <MessageCircle size={18} strokeWidth={2.25} />
+                      <WhatsAppIcon size={18} />
                       <span>Share Results on WhatsApp</span>
                     </a>
                   </div>

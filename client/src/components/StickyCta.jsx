@@ -1,4 +1,5 @@
-import { MessageCircle, Calendar } from 'lucide-react'
+import { Calendar } from 'lucide-react'
+import WhatsAppIcon from './WhatsAppIcon'
 import { wa } from '../data/site'
 import { useBook } from '../context/bookContext'
 
@@ -16,7 +17,7 @@ export default function StickyCta() {
         aria-label="Chat on WhatsApp"
         title="Chat on WhatsApp"
       >
-        <MessageCircle className="sticky-icon" size={18} strokeWidth={2.25} aria-hidden="true" />
+        <WhatsAppIcon className="sticky-icon" size={19} />
         <span className="sticky-label">WHATSAPP</span>
       </a>
 
@@ -33,3 +34,4 @@ export default function StickyCta() {
     </div>
   )
 }
+

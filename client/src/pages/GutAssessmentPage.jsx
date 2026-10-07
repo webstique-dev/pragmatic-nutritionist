@@ -3,9 +3,6 @@ import {
   Smile,
   Meh,
   Frown,
-  AlertTriangle,
-  AlertCircle,
-  Sparkles,
   CheckCircle2,
   Droplet,
   Flame,
@@ -13,102 +10,130 @@ import {
   ArrowRight,
   ArrowLeft,
   RotateCcw,
-  MessageCircle,
   Clock,
   HeartPulse,
   Activity,
-  Calendar
+  Calendar,
+  Sparkles,
+  Award,
+  Compass,
+  FileText,
+  User,
+  Phone,
+  Mail,
+  Check,
+  Info
 } from 'lucide-react'
+import WhatsAppIcon from '../components/WhatsAppIcon'
 import { useSeo } from '../components/Seo'
 import { useBook } from '../context/bookContext'
 import { GOALS, wa } from '../data/site'
 import Section from '../components/Section'
 
-const SYMPTOMS = [
+const SYMPTOM_CLUSTERS = [
   {
-    id: 'bloating',
-    title: 'Bloating & Abdominal Fullness',
-    subtitle: 'Feeling tight, distended, or heavy after meals',
-    category: 'digestion'
+    categoryKey: 'digestion',
+    categoryName: 'Digestive Motility & Comfort',
+    categoryDesc: 'Core gut sensations, motility regularity, and gastric balance',
+    items: [
+      {
+        id: 'bloating',
+        title: 'Bloating & Abdominal Distension',
+        subtitle: 'Feeling tight, swollen, or heavy after regular meals'
+      },
+      {
+        id: 'constipation',
+        title: 'Constipation or Irregular Bowels',
+        subtitle: 'Hard stools, straining, or incomplete morning evacuation'
+      },
+      {
+        id: 'gas',
+        title: 'Excessive Gas & Stomach Rumbling',
+        subtitle: 'Frequent flatulence, internal bubbling, or discomfort'
+      },
+      {
+        id: 'acidity',
+        title: 'Acidity, Heartburn & GERD',
+        subtitle: 'Burning sensation in chest/throat or sour regurgitation'
+      },
+      {
+        id: 'stomach_pain',
+        title: 'Stomach Ache & Cramping',
+        subtitle: 'Abdominal sensitivity, spasms, or post-meal tenderness'
+      }
+    ]
   },
   {
-    id: 'constipation',
-    title: 'Constipation or Irregular Bowels',
-    subtitle: 'Hard stools, straining, or incomplete evacuation',
-    category: 'digestion'
+    categoryKey: 'gut_brain',
+    categoryName: 'Gut-Brain Axis & Energy Flow',
+    categoryDesc: 'Neuro-digestive connection, mental clarity, and stamina',
+    items: [
+      {
+        id: 'brain_fog',
+        title: 'Brain Fog & Post-Meal Slump',
+        subtitle: 'Difficulty focusing, grogginess, or midday energy crashes'
+      },
+      {
+        id: 'fatigue',
+        title: 'Unexplained Daily Fatigue',
+        subtitle: 'Feeling exhausted despite sleeping 7-8 hours adequately'
+      }
+    ]
   },
   {
-    id: 'gas',
-    title: 'Gas, Flatulence & Rumbling',
-    subtitle: 'Excessive stomach gas, discomfort, or cramping',
-    category: 'digestion'
-  },
-  {
-    id: 'acidity',
-    title: 'Acidity, Heartburn & GERD',
-    subtitle: 'Burning sensation in chest/throat or sour reflux',
-    category: 'digestion'
-  },
-  {
-    id: 'stomach_pain',
-    title: 'Stomach Ache & Abdominal Tenderness',
-    subtitle: 'Cramps, pain, or sharp sensitivity in the gut',
-    category: 'digestion'
-  },
-  {
-    id: 'food_cravings',
-    title: 'Food Cravings & Sudden Sugar Spikes',
-    subtitle: 'Intense sugar cravings or unmanageable hunger drops',
-    category: 'metabolic'
-  },
-  {
-    id: 'brain_fog',
-    title: 'Brain Fog & Post-Meal Slump',
-    subtitle: 'Difficulty focusing, grogginess, or memory blur',
-    category: 'gut_brain'
-  },
-  {
-    id: 'fatigue',
-    title: 'Fatigue & Low Daily Stamina',
-    subtitle: 'Feeling exhausted despite sleeping adequately',
-    category: 'gut_brain'
-  },
-  {
-    id: 'skin_issues',
-    title: 'Skin Flare-ups & Breakouts',
-    subtitle: 'Acne, eczema, unexplained rashes, or dullness',
-    category: 'metabolic'
+    categoryKey: 'metabolic',
+    categoryName: 'Metabolic Signals & Inflammation',
+    categoryDesc: 'Hormonal cues, cravings, and systemic skin responses',
+    items: [
+      {
+        id: 'food_cravings',
+        title: 'Intense Sugar & Carb Cravings',
+        subtitle: 'Sudden urges for sweets or unmanageable hunger drops'
+      },
+      {
+        id: 'skin_issues',
+        title: 'Skin Flare-ups & Breakouts',
+        subtitle: 'Acne, unexplained rashes, eczema, or skin dullness'
+      }
+    ]
   }
 ]
 
+// Flattened list for calculations
+const ALL_SYMPTOMS = SYMPTOM_CLUSTERS.flatMap((c) =>
+  c.items.map((item) => ({ ...item, category: c.categoryKey }))
+)
+
 const WATER_OPTIONS = [
-  { label: 'Under 1 Litre', value: 3, sub: 'Significantly Dehydrated' },
-  { label: '1 - 2 Litres', value: 2, sub: 'Borderline Hydration' },
-  { label: '2 - 3 Litres', value: 1, sub: 'Optimal Daily Range' },
-  { label: '3+ Litres', value: 0, sub: 'High Daily Hydration' }
+  { label: 'Under 1L', value: 3, title: 'Low', sub: 'Severe dehydration risk' },
+  { label: '1L - 2L', value: 2, title: 'Moderate', sub: 'Borderline hydration' },
+  { label: '2L - 3L', value: 1, title: 'Optimal', sub: 'Healthy daily target' },
+  { label: '3L+ / Day', value: 0, title: 'High', sub: 'Active athlete intake' }
 ]
 
-const AGE_GROUPS = ['Under 18', '18 - 30', '31 - 45', '46 - 60', '60+']
+const DIET_TYPES = ['Pure Vegetarian', 'Non-Vegetarian', 'Eggetarian', 'Jain / Satvic', 'Vegan']
+const AGE_GROUPS = ['Under 20', '20 - 30', '31 - 45', '46 - 60', '60+']
 
-const SEVERITY_LABELS = [
-  { text: 'Never', value: 0, score: 0 },
-  { text: 'Sometimes', value: 1, score: 1 },
-  { text: 'Often', value: 2, score: 2 },
-  { text: 'Always', value: 3, score: 3 }
+const SEVERITY_LEVELS = [
+  { text: 'Never', value: 0, short: '0' },
+  { text: 'Sometimes', value: 1, short: '1' },
+  { text: 'Often', value: 2, short: '2' },
+  { text: 'Always', value: 3, short: '3' }
 ]
 
 export default function GutAssessmentPage() {
   useSeo(
-    'Free Gut Health Assessment Quiz | Pragmatic Nutritionist',
-    'Evaluate your digestive health, calculate your gut balance score with emotional feedback, and get personalized clinical food-first insights by Meenu Balaji.'
+    'Free Clinical Gut Health Assessment | Pragmatic Nutritionist',
+    'Evaluate your digestive motility, calculate your evidence-led gut balance score, and receive personalized Indian food-first guidance by Meenu Balaji.'
   )
 
   const openBook = useBook()
 
-  // Multi-step form state (1: Symptoms, 2: Lifestyle, 3: Contact & Result)
+  // Steps: 1 = Symptoms, 2 = Lifestyle, 3 = Profile, 4 = Result View
   const [step, setStep] = useState(1)
   const [symptomAnswers, setSymptomAnswers] = useState({})
   const [waterIntake, setWaterIntake] = useState(WATER_OPTIONS[2].label)
+  const [dietType, setDietType] = useState(DIET_TYPES[0])
   const [ageGroup, setAgeGroup] = useState(AGE_GROUPS[1])
   const [diagnosedConditions, setDiagnosedConditions] = useState([])
   const [formData, setFormData] = useState({
@@ -119,34 +144,49 @@ export default function GutAssessmentPage() {
   })
   const [isCalculated, setIsCalculated] = useState(false)
 
-  // Handle symptom answer selection
   const handleSymptomSelect = (symptomId, val) => {
     setSymptomAnswers((prev) => ({ ...prev, [symptomId]: val }))
   }
 
-  // Answered symptom count
   const answeredCount = Object.keys(symptomAnswers).length
+  const totalSymptoms = ALL_SYMPTOMS.length
+  const progressPercent = Math.round((answeredCount / totalSymptoms) * 100)
 
-  // Calculate live score
-  const { score, emotionTier } = useMemo(() => {
+  // Live Score Calculation
+  const { score, emotionTier, digestionScore, gutBrainScore, metabolicScore } = useMemo(() => {
     let rawPenalty = 0
-    const maxPossiblePenalty = SYMPTOMS.length * 3 + 3 // symptoms + water
+    const maxPenalty = totalSymptoms * 3 + 3
 
-    SYMPTOMS.forEach((s) => {
+    ALL_SYMPTOMS.forEach((s) => {
       const val = symptomAnswers[s.id] ?? 0
       rawPenalty += val
     })
 
     const waterObj = WATER_OPTIONS.find((w) => w.label === waterIntake)
-    if (waterObj) {
-      rawPenalty += waterObj.value
-    }
+    if (waterObj) rawPenalty += waterObj.value
 
-    // Convert to 0 - 100 Score
     const calculatedScore = Math.max(
       15,
-      Math.min(100, Math.round(100 - (rawPenalty / maxPossiblePenalty) * 85))
+      Math.min(100, Math.round(100 - (rawPenalty / maxPenalty) * 85))
     )
+
+    // Cluster penalties
+    const digPenalty = ALL_SYMPTOMS.filter((s) => s.category === 'digestion').reduce(
+      (acc, s) => acc + (symptomAnswers[s.id] ?? 0),
+      0
+    )
+    const gbPenalty = ALL_SYMPTOMS.filter((s) => s.category === 'gut_brain').reduce(
+      (acc, s) => acc + (symptomAnswers[s.id] ?? 0),
+      0
+    )
+    const metPenalty = ALL_SYMPTOMS.filter((s) => s.category === 'metabolic').reduce(
+      (acc, s) => acc + (symptomAnswers[s.id] ?? 0),
+      0
+    )
+
+    const dScore = Math.max(10, Math.round(100 - (digPenalty / 15) * 85))
+    const gbScore = Math.max(10, Math.round(100 - (gbPenalty / 6) * 85))
+    const mScore = Math.max(10, Math.round(100 - (metPenalty / 6) * 85))
 
     let tier
     if (calculatedScore >= 80) {
@@ -154,85 +194,89 @@ export default function GutAssessmentPage() {
         level: 'optimal',
         label: 'THRIVING & BALANCED GUT',
         shortDesc: 'Your digestive tract is resilient and functioning with minimal irritation.',
-        color: 'var(--color-primary)',
-        bgTint: 'var(--color-primary-soft)',
-        borderColor: 'var(--color-primary)',
+        color: '#55883B',
+        bgTint: '#E6F0DC',
+        accentBg: '#C1E899',
         icon: Smile,
-        emoji: '😄',
-        mood: 'Calm, Energized & Harmonious',
+        emoji: '🌿',
+        statusTag: 'Optimal Health',
+        mood: 'Harmonious & Energized',
         actionAdvice:
-          'Your digestive system is happy and functioning well! Continue focusing on diverse fiber, seasonal Indian foods, and hydration to preserve your microbiome strength.',
-        badgeColor: 'var(--color-primary)',
-        badgeBg: 'var(--color-primary-light)'
+          'Your digestive system is functioning with high resilience! Focus on diverse seasonal Indian fiber, cold-pressed oils, and consistent meal timings to maintain your microbiome diversity.',
+        foodProtocols: [
+          { title: 'Microbiome Diversity', desc: 'Include 20+ seasonal Indian plant varieties weekly.' },
+          { title: 'Hydration Spacing', desc: 'Sip warm water 30 mins before meals, not with meals.' },
+          { title: 'Digestive Enzymes', desc: 'Chew 1 tsp roasted saunf & ajwain after heavy lunches.' },
+          { title: 'Prebiotic Fuel', desc: 'Add soaked chia, flax, and homemade curd or chaas.' }
+        ]
       }
     } else if (calculatedScore >= 55) {
       tier = {
         level: 'warning',
         label: 'MILD GUT DISTRESS & SENSITIVITY',
-        shortDesc: 'Early warning signs detected. Food triggers or low enzyme activity are disrupting digestion.',
-        color: 'var(--color-secondary)',
-        bgTint: 'var(--color-secondary-soft)',
-        borderColor: 'var(--color-secondary)',
+        shortDesc: 'Early warning signals detected. Irregular motility or enzyme lag are causing distress.',
+        color: '#9A6735',
+        bgTint: '#FBF6F0',
+        accentBg: '#F2E7DC',
         icon: Meh,
-        emoji: '😐',
-        mood: 'Sluggish, Bloated & Irritated',
+        emoji: '⚠️',
+        statusTag: 'Moderate Sensitivity',
+        mood: 'Sluggish & Sensitive',
         actionAdvice:
-          'Your gut is showing clear distress signals. Targeted meal sequencing and identifying hidden food triggers will prevent chronic IBS or metabolic fatigue.',
-        badgeColor: 'var(--color-secondary)',
-        badgeBg: 'var(--color-secondary-soft)'
+          'Your gut shows evident irritation signals. Targeted Indian meal sequencing, identifying hidden food triggers, and restoring digestive fire (Agni) will prevent chronic dysbiosis or IBS.',
+        foodProtocols: [
+          { title: 'Agni Enhancement', desc: 'Fresh ginger + rock salt sliver 10 mins before main meals.' },
+          { title: 'Gentle Fiber', desc: 'Favor cooked gourds (lauki, ridge gourd) over raw salads.' },
+          { title: 'Fermented Support', desc: 'Midday buttermilk (chaas) infused with roasted jeera & mint.' },
+          { title: 'Trigger Elimination', desc: 'Avoid deep-fried snacks and ultra-processed bakery goods.' }
+        ]
       }
     } else {
       tier = {
         level: 'critical',
-        label: 'HIGH GUT STRESS & DYSBIOSIS',
-        shortDesc: 'Significant gastrointestinal stress and inflammation impacting daily energy and comfort.',
-        color: 'var(--color-secondary)',
-        bgTint: 'var(--color-secondary-soft)',
-        borderColor: 'var(--color-secondary)',
+        label: 'HIGH GUT STRESS & INFLAMMATION',
+        shortDesc: 'Significant gastrointestinal distress, dysbiosis, and compromised barrier integrity.',
+        color: '#B23B2A',
+        bgTint: '#FDF2F0',
+        accentBg: '#FCE4E1',
         icon: Frown,
-        emoji: '😟',
-        mood: 'Distressed, Inflamed & Overwhelmed',
+        emoji: '🚨',
+        statusTag: 'Clinical Attention Needed',
+        mood: 'Inflamed & Depleted',
         actionAdvice:
-          'Your gut barrier is under serious stress, likely disrupting nutrient absorption, hormone balance, and daily vitality. A clinical, food-first protocol is strongly recommended.',
-        badgeColor: 'var(--color-secondary)',
-        badgeBg: 'var(--color-secondary-subtle)'
+          'Your gut barrier is experiencing significant stress, likely impacting nutrient absorption, hormone regulation, and metabolic energy. A structured clinical food-first protocol is strongly advised.',
+        foodProtocols: [
+          { title: 'Gut Lining Repair', desc: 'Warm vegetable broth, kanji, and stewed golden apples.' },
+          { title: 'Zero Cold Liquids', desc: 'Strictly avoid ice water; drink warm cumin-coriander tea.' },
+          { title: 'Anti-Inflammatory Spices', desc: 'Cook with organic turmeric, hing, and mild cumin seeds.' },
+          { title: 'Personalized Clinical Care', desc: 'Book a 1-on-1 diagnostic review with Meenu Balaji.' }
+        ]
       }
     }
 
-    return { score: calculatedScore, emotionTier: tier }
-  }, [symptomAnswers, waterIntake])
+    return {
+      score: calculatedScore,
+      emotionTier: tier,
+      digestionScore: dScore,
+      gutBrainScore: gbScore,
+      metabolicScore: mScore
+    }
+  }, [symptomAnswers, waterIntake, totalSymptoms])
 
-  const circumference = 2 * Math.PI * 48
+  const circumference = 2 * Math.PI * 52
   const strokeDashoffset = circumference - (score / 100) * circumference
-
   const EmotionIcon = emotionTier.icon
-
-  // Breakdown metrics
-  const digestionPenalty = SYMPTOMS.filter((s) => s.category === 'digestion').reduce(
-    (acc, s) => acc + (symptomAnswers[s.id] ?? 0),
-    0
-  )
-  const gutBrainPenalty = SYMPTOMS.filter((s) => s.category === 'gut_brain').reduce(
-    (acc, s) => acc + (symptomAnswers[s.id] ?? 0),
-    0
-  )
-  const metabolicPenalty = SYMPTOMS.filter((s) => s.category === 'metabolic').reduce(
-    (acc, s) => acc + (symptomAnswers[s.id] ?? 0),
-    0
-  )
-
-  const digestionScore = Math.max(10, Math.round(100 - (digestionPenalty / 15) * 85))
-  const gutBrainScore = Math.max(10, Math.round(100 - (gutBrainPenalty / 6) * 85))
-  const metabolicScore = Math.max(10, Math.round(100 - (metabolicPenalty / 6) * 85))
 
   const handleRetake = () => {
     setSymptomAnswers({})
     setWaterIntake(WATER_OPTIONS[2].label)
+    setDietType(DIET_TYPES[0])
     setAgeGroup(AGE_GROUPS[1])
     setDiagnosedConditions([])
     setFormData({ name: '', phone: '', email: '', goal: GOALS[0] })
     setStep(1)
     setIsCalculated(false)
+    window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
   const toggleCondition = (cond) => {
@@ -242,178 +286,253 @@ export default function GutAssessmentPage() {
   }
 
   return (
-    <div className="gut-assessment-page">
-      {/* Page Header Hero */}
-      <section className="assessment-hero-header">
-        <div className="section-inner sec-wide">
-          <div className="assessment-hero-content">
-            <span className="section-eyebrow">CLINICAL DIGESTIVE SCORECARD</span>
-            <h1 className="assessment-page-title">Free Gut Health Assessment Quiz</h1>
-            <p className="assessment-page-lead">
-              Take this 2-minute clinical evaluation to calculate your gut balance score with emotional feedback, uncover underlying triggers, and receive practical Indian food-first guidance.
-            </p>
+    <div className="gut-assessment-page-root">
+      {/* 1. EDITORIAL HERO HEADER */}
+      <section className="assessment-editorial-hero">
+        <div className="assessment-hero-inner">
+          <div className="assessment-hero-eyebrow-pill">
+            <span className="eyebrow-pulse-dot" aria-hidden="true" />
+            <span className="eyebrow-label">CLINICAL DIGESTIVE SCORECARD</span>
+          </div>
 
-            <div className="assessment-trust-pills">
-              <span className="trust-pill">
-                <CheckCircle2 size={16} className="text-moss" />
-                <span>100% Indian Home Food Focus</span>
-              </span>
-              <span className="trust-pill">
-                <ShieldCheck size={16} className="text-moss" />
-                <span>14+ Years Clinical Expertise</span>
-              </span>
-              <span className="trust-pill">
-                <Clock size={16} className="text-moss" />
-                <span>Takes Under 2 Minutes</span>
-              </span>
+          <h1 className="assessment-editorial-title">
+            <span>Free Gut Health </span>
+            <span className="title-accent-highlight">Assessment Quiz</span>
+          </h1>
+
+          <p className="assessment-editorial-lead">
+            Take this 2-minute clinical evaluation to calculate your gut balance score with live emotional feedback, uncover underlying food triggers, and receive practical Indian food-first guidance.
+          </p>
+
+          <div className="assessment-credential-strip">
+            <div className="credential-badge">
+              <CheckCircle2 size={15} className="cred-icon" aria-hidden="true" />
+              <span>100% Indian Kitchen Foods</span>
+            </div>
+            <div className="credential-badge">
+              <ShieldCheck size={15} className="cred-icon" aria-hidden="true" />
+              <span>14+ Years Clinical Expertise</span>
+            </div>
+            <div className="credential-badge">
+              <Clock size={15} className="cred-icon" aria-hidden="true" />
+              <span>Takes ~2 Minutes</span>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Main Assessment Container (Width matching Our Categories / sec-wide) */}
-      <Section id="assessment-main" width="wide" bg="olive" className="assessment-body-section">
+      {/* 2. MAIN INTERACTIVE ASSESSMENT CONTAINER */}
+      <Section id="assessment-workspace" width="wide" bg="none" className="assessment-main-section">
         {!isCalculated ? (
-          <div className="assessment-wizard-grid">
-            {/* Left Column: Multi-Step Interactive Assessment Form */}
-            <div className="assessment-form-card">
-              {/* Stepper Navigation Indicator */}
-              <div className="wizard-stepper-header">
-                <div className="stepper-tab-list">
+          <div className="assessment-dual-layout">
+            {/* LEFT COLUMN: MULTI-STEP WIZARD */}
+            <div className="assessment-wizard-card">
+              {/* Responsive Progress Stepper */}
+              <div className="stepper-progress-header">
+                <div className="stepper-pills-row">
                   <button
-                    className={`stepper-tab ${step === 1 ? 'active' : step > 1 ? 'completed' : ''}`}
+                    type="button"
+                    className={`stepper-stage-btn ${step === 1 ? 'is-active' : step > 1 ? 'is-completed' : ''}`}
                     onClick={() => setStep(1)}
                   >
-                    <span className="step-num">1</span>
-                    <span className="step-label">Symptoms ({answeredCount}/{SYMPTOMS.length})</span>
+                    <span className="stage-number">{step > 1 ? <Check size={12} strokeWidth={3} /> : '1'}</span>
+                    <span className="stage-text">Symptoms</span>
                   </button>
-                  <div className="stepper-line" />
+
+                  <div className="stepper-connector-line" />
+
                   <button
-                    className={`stepper-tab ${step === 2 ? 'active' : step > 2 ? 'completed' : ''}`}
+                    type="button"
+                    className={`stepper-stage-btn ${step === 2 ? 'is-active' : step > 2 ? 'is-completed' : ''}`}
                     onClick={() => {
-                      if (answeredCount >= 4) setStep(2)
+                      if (answeredCount >= 3) setStep(2)
                     }}
                   >
-                    <span className="step-num">2</span>
-                    <span className="step-label">Lifestyle & Water</span>
+                    <span className="stage-number">{step > 2 ? <Check size={12} strokeWidth={3} /> : '2'}</span>
+                    <span className="stage-text">Lifestyle</span>
                   </button>
-                  <div className="stepper-line" />
+
+                  <div className="stepper-connector-line" />
+
                   <button
-                    className={`stepper-tab ${step === 3 ? 'active' : ''}`}
+                    type="button"
+                    className={`stepper-stage-btn ${step === 3 ? 'is-active' : ''}`}
                     onClick={() => {
-                      if (answeredCount >= 4) setStep(3)
+                      if (answeredCount >= 3) setStep(3)
                     }}
                   >
-                    <span className="step-num">3</span>
-                    <span className="step-label">Your Score</span>
+                    <span className="stage-number">3</span>
+                    <span className="stage-text">Report</span>
                   </button>
+                </div>
+
+                {/* Progress bar line */}
+                <div className="stepper-fill-track" aria-hidden="true">
+                  <div
+                    className="stepper-fill-bar"
+                    style={{
+                      width: `${step === 1 ? (answeredCount / totalSymptoms) * 33.3 : step === 2 ? 66.6 : 100}%`
+                    }}
+                  />
                 </div>
               </div>
 
-              {/* Step 1: Symptoms Checklist */}
+              {/* STEP 1: SYMPTOM CLUSTERS */}
               {step === 1 && (
-                <div className="wizard-step-body animate-fadeIn">
-                  <div className="step-heading-row">
+                <div className="wizard-step-container animate-fadeIn">
+                  <div className="step-intro-bar">
                     <div>
-                      <h2 className="wizard-step-title">Step 1: Symptom Frequency Mapping</h2>
-                      <p className="wizard-step-desc">
-                        How often do you experience the following symptoms in a typical week?
+                      <span className="step-tag-pill">STEP 1 OF 3</span>
+                      <h2 className="step-main-heading">Symptom Frequency Mapping</h2>
+                      <p className="step-sub-desc">
+                        Select how often you experience each symptom in a typical week.
                       </p>
+                    </div>
+                    <div className="answered-counter-pill">
+                      <span>{answeredCount} / {totalSymptoms} Answered</span>
                     </div>
                   </div>
 
-                  <div className="symptoms-interactive-list">
-                    {SYMPTOMS.map((symptom) => {
-                      const currentVal = symptomAnswers[symptom.id]
-
-                      return (
-                        <div key={symptom.id} className="symptom-item-row">
-                          <div className="symptom-text-block">
-                            <h3 className="symptom-item-title">{symptom.title}</h3>
-                            <p className="symptom-item-sub">{symptom.subtitle}</p>
-                          </div>
-
-                          <div className="severity-pill-group" role="radiogroup" aria-label={symptom.title}>
-                            {SEVERITY_LABELS.map((sev) => {
-                              const isSelected = currentVal === sev.value
-
-                              return (
-                                <button
-                                  key={sev.text}
-                                  type="button"
-                                  className={`severity-pill-btn ${isSelected ? 'selected' : ''}`}
-                                  onClick={() => handleSymptomSelect(symptom.id, sev.value)}
-                                  aria-checked={isSelected}
-                                  role="radio"
-                                >
-                                  {sev.text}
-                                </button>
-                              )
-                            })}
-                          </div>
+                  <div className="clusters-wrapper">
+                    {SYMPTOM_CLUSTERS.map((cluster) => (
+                      <div key={cluster.categoryKey} className="symptom-cluster-group">
+                        <div className="cluster-header">
+                          <h3 className="cluster-title">{cluster.categoryName}</h3>
+                          <p className="cluster-desc">{cluster.categoryDesc}</p>
                         </div>
-                      )
-                    })}
+
+                        <div className="cluster-symptoms-list">
+                          {cluster.items.map((symptom) => {
+                            const currentVal = symptomAnswers[symptom.id]
+                            const isAnswered = currentVal !== undefined
+
+                            return (
+                              <div
+                                key={symptom.id}
+                                className={`symptom-item-card ${isAnswered ? 'has-answer' : ''}`}
+                              >
+                                <div className="symptom-info">
+                                  <h4 className="symptom-name">{symptom.title}</h4>
+                                  <p className="symptom-desc">{symptom.subtitle}</p>
+                                </div>
+
+                                <div
+                                  className="severity-pill-selector"
+                                  role="radiogroup"
+                                  aria-label={symptom.title}
+                                >
+                                  {SEVERITY_LEVELS.map((sev) => {
+                                    const isSelected = currentVal === sev.value
+
+                                    return (
+                                      <button
+                                        key={sev.text}
+                                        type="button"
+                                        className={`severity-option-btn ${isSelected ? 'is-selected' : ''}`}
+                                        onClick={() => handleSymptomSelect(symptom.id, sev.value)}
+                                        role="radio"
+                                        aria-checked={isSelected}
+                                      >
+                                        <span className="btn-full-text">{sev.text}</span>
+                                      </button>
+                                    )
+                                  })}
+                                </div>
+                              </div>
+                            )
+                          })}
+                        </div>
+                      </div>
+                    ))}
                   </div>
 
-                  <div className="wizard-footer-action">
+                  <div className="wizard-action-footer">
                     <button
                       type="button"
-                      className="btn btn-primary btn-lg"
-                      onClick={() => setStep(2)}
+                      className="btn-wizard-primary"
+                      onClick={() => {
+                        setStep(2)
+                        window.scrollTo({ top: 200, behavior: 'smooth' })
+                      }}
                     >
                       <span>Continue to Lifestyle & Hydration</span>
-                      <ArrowRight size={18} strokeWidth={2.5} />
+                      <ArrowRight size={17} strokeWidth={2.2} aria-hidden="true" />
                     </button>
                   </div>
                 </div>
               )}
 
-              {/* Step 2: Lifestyle & Hydration */}
+              {/* STEP 2: LIFESTYLE & HYDRATION */}
               {step === 2 && (
-                <div className="wizard-step-body animate-fadeIn">
-                  <div className="step-heading-row">
+                <div className="wizard-step-container animate-fadeIn">
+                  <div className="step-intro-bar">
                     <div>
-                      <h2 className="wizard-step-title">Step 2: Hydration & Profile Context</h2>
-                      <p className="wizard-step-desc">
-                        Water intake and lifestyle variables directly shape enzyme production and motility.
+                      <span className="step-tag-pill">STEP 2 OF 3</span>
+                      <h2 className="step-main-heading">Hydration & Lifestyle Context</h2>
+                      <p className="step-sub-desc">
+                        Water volume and meal patterns directly dictate enzyme secretion and peristalsis.
                       </p>
                     </div>
                   </div>
 
-                  <div className="lifestyle-questions-wrap">
+                  <div className="lifestyle-sections-stack">
                     {/* Water intake */}
-                    <div className="lifestyle-field-block">
-                      <label className="field-label-prominent">
-                        <Droplet size={18} className="text-moss inline-icon" />
+                    <div className="lifestyle-card-box">
+                      <label className="box-label">
+                        <Droplet size={17} className="box-icon" aria-hidden="true" />
                         <span>Daily Water Intake</span>
                       </label>
-                      <div className="water-options-grid">
-                        {WATER_OPTIONS.map((w) => (
+                      <div className="water-grid">
+                        {WATER_OPTIONS.map((w) => {
+                          const isSelected = waterIntake === w.label
+                          return (
+                            <button
+                              key={w.label}
+                              type="button"
+                              className={`water-option-card ${isSelected ? 'is-selected' : ''}`}
+                              onClick={() => setWaterIntake(w.label)}
+                            >
+                              <span className="water-title">{w.label}</span>
+                              <span className="water-subtext">{w.sub}</span>
+                              {isSelected && <Check size={14} className="selected-check-icon" />}
+                            </button>
+                          )
+                        })}
+                      </div>
+                    </div>
+
+                    {/* Diet Type */}
+                    <div className="lifestyle-card-box">
+                      <label className="box-label">
+                        <Compass size={17} className="box-icon" aria-hidden="true" />
+                        <span>Primary Food Lifestyle</span>
+                      </label>
+                      <div className="chips-flex-row">
+                        {DIET_TYPES.map((diet) => (
                           <button
-                            key={w.label}
+                            key={diet}
                             type="button"
-                            className={`water-card-btn ${waterIntake === w.label ? 'selected' : ''}`}
-                            onClick={() => setWaterIntake(w.label)}
+                            className={`choice-chip-btn ${dietType === diet ? 'is-selected' : ''}`}
+                            onClick={() => setDietType(diet)}
                           >
-                            <span className="water-label">{w.label}</span>
-                            <span className="water-sub">{w.sub}</span>
+                            {diet}
                           </button>
                         ))}
                       </div>
                     </div>
 
                     {/* Age group */}
-                    <div className="lifestyle-field-block">
-                      <label className="field-label-prominent">
-                        <span>Age Group</span>
+                    <div className="lifestyle-card-box">
+                      <label className="box-label">
+                        <User size={17} className="box-icon" aria-hidden="true" />
+                        <span>Age Bracket</span>
                       </label>
-                      <div className="pill-choice-row">
+                      <div className="chips-flex-row">
                         {AGE_GROUPS.map((age) => (
                           <button
                             key={age}
                             type="button"
-                            className={`pill-choice-btn ${ageGroup === age ? 'selected' : ''}`}
+                            className={`choice-chip-btn ${ageGroup === age ? 'is-selected' : ''}`}
                             onClick={() => setAgeGroup(age)}
                           >
                             {age}
@@ -422,72 +541,89 @@ export default function GutAssessmentPage() {
                       </div>
                     </div>
 
-                    {/* Pre-existing conditions */}
-                    <div className="lifestyle-field-block">
-                      <label className="field-label-prominent">
-                        <span>Any diagnosed conditions? (Optional)</span>
+                    {/* Diagnosed conditions */}
+                    <div className="lifestyle-card-box">
+                      <label className="box-label">
+                        <FileText size={17} className="box-icon" aria-hidden="true" />
+                        <span>Any diagnosed conditions? (Select all that apply)</span>
                       </label>
-                      <div className="condition-tags-row">
-                        {['IBS / SIBO', 'Acidity / GERD', 'PCOS', 'Thyroid', 'Type 2 Diabetes', 'None'].map(
-                          (c) => (
-                            <button
-                              key={c}
-                              type="button"
-                              className={`condition-tag-btn ${
-                                diagnosedConditions.includes(c) ? 'selected' : ''
-                              }`}
-                              onClick={() => toggleCondition(c)}
-                            >
-                              {diagnosedConditions.includes(c) && (
-                                <CheckCircle2 size={14} className="inline-check" />
-                              )}
-                              {c}
-                            </button>
-                          )
+                      <div className="chips-flex-row">
+                        {['IBS / SIBO', 'Acidity / GERD', 'PCOS / PCOD', 'Thyroid', 'Type 2 Diabetes', 'Fatty Liver', 'None'].map(
+                          (cond) => {
+                            const isSelected = diagnosedConditions.includes(cond)
+                            return (
+                              <button
+                                key={cond}
+                                type="button"
+                                className={`choice-chip-btn ${isSelected ? 'is-selected' : ''}`}
+                                onClick={() => toggleCondition(cond)}
+                              >
+                                {isSelected && <Check size={13} className="inline-check" />}
+                                <span>{cond}</span>
+                              </button>
+                            )
+                          }
                         )}
                       </div>
                     </div>
                   </div>
 
-                  <div className="wizard-footer-action dual-actions">
+                  <div className="wizard-action-footer dual-button-footer">
                     <button
                       type="button"
-                      className="btn btn-ghost"
+                      className="btn-wizard-secondary"
                       onClick={() => setStep(1)}
                     >
-                      <ArrowLeft size={16} strokeWidth={2.5} />
+                      <ArrowLeft size={16} strokeWidth={2.2} />
                       <span>Back to Symptoms</span>
                     </button>
                     <button
                       type="button"
-                      className="btn btn-primary btn-lg"
-                      onClick={() => setStep(3)}
+                      className="btn-wizard-primary"
+                      onClick={() => {
+                        setStep(3)
+                        window.scrollTo({ top: 200, behavior: 'smooth' })
+                      }}
                     >
                       <span>Proceed to Your Gut Report</span>
-                      <ArrowRight size={18} strokeWidth={2.5} />
+                      <ArrowRight size={17} strokeWidth={2.2} />
                     </button>
                   </div>
                 </div>
               )}
 
-              {/* Step 3: Contact & Instant Report Generation */}
+              {/* STEP 3: CONTACT FORM & SCORE GENERATION */}
               {step === 3 && (
-                <div className="wizard-step-body animate-fadeIn">
-                  <div className="step-heading-row">
+                <div className="wizard-step-container animate-fadeIn">
+                  <div className="step-intro-bar">
                     <div>
-                      <h2 className="wizard-step-title">Step 3: Receive Your Comprehensive Score</h2>
-                      <p className="wizard-step-desc">
-                        Enter your details to generate your personalized emotional scorecard and customized Indian meal strategy.
+                      <span className="step-tag-pill">STEP 3 OF 3</span>
+                      <h2 className="step-main-heading">Generate Your Clinical Gut Report</h2>
+                      <p className="step-sub-desc">
+                        Enter your details below to generate your personalized emotional scorecard and customized Indian nutrition recommendations.
                       </p>
                     </div>
                   </div>
 
-                  <div className="contact-form-grid">
-                    <div className="input-group">
-                      <label htmlFor="user-name">Your Full Name *</label>
+                  <form
+                    className="contact-fields-grid"
+                    onSubmit={(e) => {
+                      e.preventDefault()
+                      if (formData.name.trim() && formData.phone.trim().length >= 8) {
+                        setIsCalculated(true)
+                        window.scrollTo({ top: 150, behavior: 'smooth' })
+                      }
+                    }}
+                  >
+                    <div className="form-field-group">
+                      <label htmlFor="user-name" className="input-label">
+                        <User size={15} />
+                        <span>Your Full Name *</span>
+                      </label>
                       <input
                         id="user-name"
                         type="text"
+                        className="clinical-text-input"
                         placeholder="e.g. Ananya Iyer"
                         value={formData.name}
                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
@@ -495,12 +631,16 @@ export default function GutAssessmentPage() {
                       />
                     </div>
 
-                    <div className="input-group">
-                      <label htmlFor="user-phone">WhatsApp Number * (For Instant Summary)</label>
+                    <div className="form-field-group">
+                      <label htmlFor="user-phone" className="input-label">
+                        <Phone size={15} />
+                        <span>WhatsApp Number * (For Instant Report Dispatch)</span>
+                      </label>
                       <input
                         id="user-phone"
                         type="tel"
                         inputMode="tel"
+                        className="clinical-text-input"
                         placeholder="e.g. 9876543210"
                         value={formData.phone}
                         onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
@@ -508,21 +648,29 @@ export default function GutAssessmentPage() {
                       />
                     </div>
 
-                    <div className="input-group full-width">
-                      <label htmlFor="user-email">Email Address (Optional)</label>
+                    <div className="form-field-group span-full">
+                      <label htmlFor="user-email" className="input-label">
+                        <Mail size={15} />
+                        <span>Email Address (Optional)</span>
+                      </label>
                       <input
                         id="user-email"
                         type="email"
+                        className="clinical-text-input"
                         placeholder="e.g. ananya@example.com"
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                       />
                     </div>
 
-                    <div className="input-group full-width">
-                      <label htmlFor="user-goal">Primary Health Priority</label>
+                    <div className="form-field-group span-full">
+                      <label htmlFor="user-goal" className="input-label">
+                        <Compass size={15} />
+                        <span>Primary Health Priority</span>
+                      </label>
                       <select
                         id="user-goal"
+                        className="clinical-select-input"
                         value={formData.goal}
                         onChange={(e) => setFormData({ ...formData, goal: e.target.value })}
                       >
@@ -533,229 +681,288 @@ export default function GutAssessmentPage() {
                         ))}
                       </select>
                     </div>
-                  </div>
 
-                  <div className="wizard-footer-action dual-actions">
-                    <button
-                      type="button"
-                      className="btn btn-ghost"
-                      onClick={() => setStep(2)}
-                    >
-                      <ArrowLeft size={16} strokeWidth={2.5} />
-                      <span>Back</span>
-                    </button>
-                    <button
-                      type="button"
-                      className="btn btn-primary btn-lg"
-                      disabled={!formData.name.trim() || formData.phone.trim().length < 8}
-                      onClick={() => setIsCalculated(true)}
-                    >
-                      <Sparkles size={18} strokeWidth={2.2} />
-                      <span>Calculate My Gut Score</span>
-                    </button>
-                  </div>
+                    <div className="privacy-assurance-note span-full">
+                      <ShieldCheck size={15} className="shield-icon" aria-hidden="true" />
+                      <span>100% Confidential • Zero Spam Guarantee • Evidence-Led Nutrition Only</span>
+                    </div>
+
+                    <div className="wizard-action-footer dual-button-footer span-full">
+                      <button
+                        type="button"
+                        className="btn-wizard-secondary"
+                        onClick={() => setStep(2)}
+                      >
+                        <ArrowLeft size={16} strokeWidth={2.2} />
+                        <span>Back</span>
+                      </button>
+                      <button
+                        type="submit"
+                        className="btn-wizard-primary"
+                        disabled={!formData.name.trim() || formData.phone.trim().length < 8}
+                      >
+                        <Sparkles size={17} strokeWidth={2.2} />
+                        <span>Calculate My Gut Score</span>
+                      </button>
+                    </div>
+                  </form>
                 </div>
               )}
             </div>
 
-            {/* Right Column: Live Emotional Score Preview & Clinical Context */}
-            <aside className="assessment-sidebar-col">
-              {/* Dynamic Emotional Gauge Card */}
-              <div className="live-emotion-card" style={{ borderColor: emotionTier.borderColor }}>
-                <div className="emotion-preview-badge" style={{ backgroundColor: emotionTier.bgTint, color: emotionTier.color }}>
-                  <EmotionIcon size={20} strokeWidth={2.5} />
-                  <span>LIVE ASSESSMENT STATUS</span>
-                </div>
+            {/* RIGHT COLUMN: STICKY CLINICAL BAROMETER */}
+            <aside className="assessment-sidebar-pane">
+              <div className="sticky-sidebar-content">
+                {/* Live Dynamic Score Gauge Card */}
+                <div className="sidebar-gauge-card" style={{ borderColor: emotionTier.color }}>
+                  <div
+                    className="gauge-status-badge"
+                    style={{ backgroundColor: emotionTier.bgTint, color: emotionTier.color }}
+                  >
+                    <EmotionIcon size={16} strokeWidth={2.5} />
+                    <span>LIVE STATUS: {emotionTier.statusTag.toUpperCase()}</span>
+                  </div>
 
-                <div className="score-visual-gauge">
-                  <svg className="score-ring-svg" width="130" height="130" viewBox="0 0 130 130" aria-hidden="true">
-                    <circle className="score-ring-track" cx="65" cy="65" r="48" fill="none" strokeWidth="9" />
-                    <circle
-                      className="score-ring-progress"
-                      cx="65"
-                      cy="65"
-                      r="48"
-                      fill="none"
-                      stroke={emotionTier.color}
-                      strokeWidth="9"
-                      strokeDasharray={circumference}
-                      strokeDashoffset={strokeDashoffset}
-                      strokeLinecap="round"
-                    />
-                  </svg>
-                  <div className="score-inner-val">
-                    <span className="score-big-num">{score}</span>
-                    <span className="score-denom">/ 100</span>
+                  <div className="gauge-circle-wrap">
+                    <svg className="gauge-svg-ring" width="136" height="136" viewBox="0 0 136 136" aria-hidden="true">
+                      <circle className="gauge-bg-ring" cx="68" cy="68" r="52" fill="none" strokeWidth="10" />
+                      <circle
+                        className="gauge-fill-ring"
+                        cx="68"
+                        cy="68"
+                        r="52"
+                        fill="none"
+                        stroke={emotionTier.color}
+                        strokeWidth="10"
+                        strokeDasharray={circumference}
+                        strokeDashoffset={strokeDashoffset}
+                        strokeLinecap="round"
+                      />
+                    </svg>
+                    <div className="gauge-center-text">
+                      <span className="gauge-big-num">{score}</span>
+                      <span className="gauge-denom">/ 100</span>
+                    </div>
+                  </div>
+
+                  <div className="gauge-tier-meta">
+                    <span className="tier-emoji-icon">{emotionTier.emoji}</span>
+                    <h3 className="tier-title" style={{ color: emotionTier.color }}>
+                      {emotionTier.label}
+                    </h3>
+                    <p className="tier-mood-text">
+                      <strong>Emotional State:</strong> {emotionTier.mood}
+                    </p>
+                    <p className="tier-desc-text">{emotionTier.shortDesc}</p>
                   </div>
                 </div>
 
-                <div className="emotion-state-block">
-                  <div className="emoji-display">{emotionTier.emoji}</div>
-                  <h3 className="emotion-state-title" style={{ color: emotionTier.color }}>
-                    {emotionTier.label}
-                  </h3>
-                  <p className="emotion-state-mood">
-                    <strong>Emotional State:</strong> {emotionTier.mood}
+                {/* Specialist Clinical Credibility Card */}
+                <div className="sidebar-credibility-card">
+                  <div className="card-top-header">
+                    <div className="avatar-seal" aria-hidden="true">
+                      <span>MB</span>
+                    </div>
+                    <div className="avatar-meta">
+                      <h4 className="specialist-name">Meenu Balaji, M.Sc.</h4>
+                      <span className="specialist-role">Chief Clinical Nutritionist • 14+ Yrs</span>
+                    </div>
+                  </div>
+                  <p className="specialist-philosophy">
+                    "We don't do restrictive starvation or exotic diets. We look at your symptoms and rebuild digestion using delicious everyday Indian kitchen foods."
                   </p>
-                  <p className="emotion-state-desc">{emotionTier.shortDesc}</p>
-                </div>
-              </div>
-
-              {/* Clinical Trust Card */}
-              <div className="clinical-guidance-card">
-                <div className="guidance-card-header">
-                  <ShieldCheck size={22} className="text-moss" />
-                  <h4 className="guidance-title">Meenu Balaji Clinical Framework</h4>
-                </div>
-                <p className="guidance-desc">
-                  Based on 14+ years of clinical dietetics across India, the UK, and New Zealand. Designed to pinpoint dysbiosis, enzyme insufficiency, and metabolic triggers without restrictive crash diets.
-                </p>
-                <div className="guidance-badge-row">
-                  <span className="badge-mini">ICAR & UGC NET JRF</span>
-                  <span className="badge-mini">Peer Reviewer EJN</span>
+                  <div className="specialist-tags-row">
+                    <span className="spec-badge">ICAR & UGC NET JRF</span>
+                    <span className="spec-badge">Peer Reviewer EJN</span>
+                  </div>
                 </div>
               </div>
             </aside>
           </div>
         ) : (
           /* =========================================================================
-             RESULT DASHBOARD VIEW (Expressive Emotions, Breakdown & Action)
+             3. RESULT DASHBOARD: CLINICAL REPORT, EMOTIONAL GAUGE, METRICS & ACTION
              ========================================================================= */
-          <div className="assessment-results-dashboard animate-fadeIn">
-            {/* Top Result Banner */}
-            <div className="result-main-card" style={{ borderColor: emotionTier.borderColor }}>
-              <div className="result-header-row">
-                <div className="result-left-summary">
+          <div className="assessment-report-dashboard animate-fadeIn">
+            <div className="report-main-panel" style={{ borderColor: emotionTier.color }}>
+              {/* Header Row: Score + Greeting */}
+              <div className="report-header-banner">
+                <div className="report-header-left">
                   <div
-                    className="result-tier-badge"
-                    style={{ backgroundColor: emotionTier.badgeBg, color: emotionTier.badgeColor }}
+                    className="report-tier-pill"
+                    style={{ backgroundColor: emotionTier.bgTint, color: emotionTier.color }}
                   >
-                    <EmotionIcon size={18} strokeWidth={2.5} />
+                    <EmotionIcon size={18} strokeWidth={2.4} />
                     <span>{emotionTier.label}</span>
                   </div>
-                  <h2 className="result-greeting">
-                    {formData.name ? `${formData.name}'s Digestive Report` : 'Your Gut Health Score'}
+
+                  <h2 className="report-patient-greeting">
+                    {formData.name ? `${formData.name}'s Digestive Report` : 'Your Personalized Gut Score'}
                   </h2>
-                  <p className="result-emotional-mood">
-                    <strong>Emotional Status:</strong> {emotionTier.emoji} {emotionTier.mood}
+
+                  <p className="report-mood-line">
+                    <strong>Current Emotional Profile:</strong> {emotionTier.emoji} {emotionTier.mood}
                   </p>
-                  <p className="result-clinical-advice">{emotionTier.actionAdvice}</p>
+
+                  <p className="report-summary-advice">{emotionTier.actionAdvice}</p>
                 </div>
 
-                <div className="result-right-gauge">
-                  <div className="score-visual-gauge lg">
-                    <svg className="score-ring-svg" width="160" height="160" viewBox="0 0 160 160" aria-hidden="true">
-                      <circle className="score-ring-track" cx="80" cy="80" r="58" fill="none" strokeWidth="12" />
+                <div className="report-header-right">
+                  <div className="report-hero-gauge">
+                    <svg className="report-gauge-svg" width="160" height="160" viewBox="0 0 160 160" aria-hidden="true">
+                      <circle className="gauge-bg-ring" cx="80" cy="80" r="60" fill="none" strokeWidth="12" />
                       <circle
-                        className="score-ring-progress"
+                        className="gauge-fill-ring"
                         cx="80"
                         cy="80"
-                        r="58"
+                        r="60"
                         fill="none"
                         stroke={emotionTier.color}
                         strokeWidth="12"
-                        strokeDasharray={2 * Math.PI * 58}
-                        strokeDashoffset={(2 * Math.PI * 58) - (score / 100) * (2 * Math.PI * 58)}
+                        strokeDasharray={2 * Math.PI * 60}
+                        strokeDashoffset={(2 * Math.PI * 60) - (score / 100) * (2 * Math.PI * 60)}
                         strokeLinecap="round"
                       />
                     </svg>
-                    <div className="score-inner-val">
-                      <span className="score-big-num lg">{score}</span>
-                      <span className="score-denom">/ 100</span>
+                    <div className="gauge-center-text">
+                      <span className="report-score-num">{score}</span>
+                      <span className="report-score-denom">/ 100</span>
                     </div>
                   </div>
                 </div>
               </div>
 
-              {/* Breakdown Bars */}
-              <div className="result-metrics-grid">
-                <div className="metric-pill-card">
-                  <div className="metric-label-row">
-                    <span className="metric-name">
-                      <Activity size={16} className="text-moss" />
+              {/* Core 3 Biomarker Breakdown Cards */}
+              <div className="report-metrics-grid">
+                <div className="metric-pillar-box">
+                  <div className="pillar-top-row">
+                    <span className="pillar-title">
+                      <Activity size={16} className="pillar-icon" />
                       Digestion & Motility
                     </span>
-                    <span className="metric-val">{digestionScore}%</span>
+                    <span className="pillar-score" style={{ color: digestionScore >= 75 ? '#55883B' : '#9A6735' }}>
+                      {digestionScore}%
+                    </span>
                   </div>
-                  <div className="metric-progress-track">
+                  <div className="pillar-progress-track">
                     <div
-                      className="metric-progress-fill"
+                      className="pillar-progress-fill"
                       style={{
                         width: `${digestionScore}%`,
-                        backgroundColor: digestionScore >= 75 ? 'var(--color-primary)' : 'var(--color-secondary)'
+                        backgroundColor: digestionScore >= 75 ? '#55883B' : '#9A6735'
                       }}
                     />
                   </div>
+                  <span className="pillar-status-note">
+                    {digestionScore >= 75 ? 'Optimal Gastric Breakdown' : 'Enzyme insufficiency & motility lag'}
+                  </span>
                 </div>
 
-                <div className="metric-pill-card">
-                  <div className="metric-label-row">
-                    <span className="metric-name">
-                      <HeartPulse size={16} className="text-primary" />
+                <div className="metric-pillar-box">
+                  <div className="pillar-top-row">
+                    <span className="pillar-title">
+                      <HeartPulse size={16} className="pillar-icon" />
                       Gut-Brain Axis & Energy
                     </span>
-                    <span className="metric-val">{gutBrainScore}%</span>
+                    <span className="pillar-score" style={{ color: gutBrainScore >= 75 ? '#55883B' : '#9A6735' }}>
+                      {gutBrainScore}%
+                    </span>
                   </div>
-                  <div className="metric-progress-track">
+                  <div className="pillar-progress-track">
                     <div
-                      className="metric-progress-fill"
+                      className="pillar-progress-fill"
                       style={{
                         width: `${gutBrainScore}%`,
-                        backgroundColor: gutBrainScore >= 75 ? 'var(--color-primary)' : 'var(--color-secondary)'
+                        backgroundColor: gutBrainScore >= 75 ? '#55883B' : '#9A6735'
                       }}
                     />
                   </div>
+                  <span className="pillar-status-note">
+                    {gutBrainScore >= 75 ? 'Stable Neuro-Gut Signaling' : 'Post-meal fatigue & focus dips'}
+                  </span>
                 </div>
 
-                <div className="metric-pill-card">
-                  <div className="metric-label-row">
-                    <span className="metric-name">
-                      <Flame size={16} className="text-primary" />
-                      Metabolic & Systemic Balance
+                <div className="metric-pillar-box">
+                  <div className="pillar-top-row">
+                    <span className="pillar-title">
+                      <Flame size={16} className="pillar-icon" />
+                      Metabolic & Cravings
                     </span>
-                    <span className="metric-val">{metabolicScore}%</span>
+                    <span className="pillar-score" style={{ color: metabolicScore >= 75 ? '#55883B' : '#9A6735' }}>
+                      {metabolicScore}%
+                    </span>
                   </div>
-                  <div className="metric-progress-track">
+                  <div className="pillar-progress-track">
                     <div
-                      className="metric-progress-fill"
+                      className="pillar-progress-fill"
                       style={{
                         width: `${metabolicScore}%`,
-                        backgroundColor: metabolicScore >= 75 ? 'var(--color-primary)' : 'var(--color-secondary)'
+                        backgroundColor: metabolicScore >= 75 ? '#55883B' : '#9A6735'
                       }}
                     />
                   </div>
+                  <span className="pillar-status-note">
+                    {metabolicScore >= 75 ? 'Balanced Blood Sugar Cues' : 'Irregular sugar cravings & glucose spikes'}
+                  </span>
                 </div>
               </div>
 
-              {/* Direct Next-Step CTAs */}
-              <div className="result-action-toolbar">
+              {/* Food-First Clinical Guidance Protocols */}
+              <div className="report-food-protocol-box">
+                <div className="protocol-box-header">
+                  <Sparkles size={18} className="protocol-header-icon" />
+                  <h3 className="protocol-box-title">Immediate Indian Food Recommendations for Your Score</h3>
+                </div>
+                <div className="protocols-four-grid">
+                  {emotionTier.foodProtocols.map((item, idx) => (
+                    <div key={idx} className="protocol-mini-card">
+                      <span className="protocol-idx">0{idx + 1}</span>
+                      <h4 className="protocol-name">{item.title}</h4>
+                      <p className="protocol-desc">{item.desc}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Action Toolbar */}
+              <div className="report-actions-toolbar">
                 <a
-                  className="btn btn-wa btn-lg btn-no-underline"
+                  className="btn-action-wa"
                   href={wa(
-                    `Hi Meenu, I just finished the Gut Health Assessment Quiz! My Gut Score is ${score}/100 (${emotionTier.label}). Primary Goal: ${formData.goal}. Name: ${formData.name}. I would love to review my symptoms with you.`
+                    `Hi Meenu, I just completed the Gut Health Assessment Quiz! My Gut Score is ${score}/100 (${emotionTier.label}). Primary Goal: ${formData.goal}. Name: ${formData.name}. I would love to review my symptoms with you.`
                   )}
                   target="_blank"
                   rel="noreferrer"
                 >
-                  <MessageCircle size={20} strokeWidth={2.25} />
+                  <WhatsAppIcon size={19} />
                   <span>Discuss Report on WhatsApp with Meenu</span>
                 </a>
 
                 <button
-                  className="btn btn-primary btn-lg"
+                  type="button"
+                  className="btn-action-primary"
                   onClick={openBook}
                 >
-                  <Calendar size={18} strokeWidth={2.25} />
+                  <Calendar size={17} strokeWidth={2.2} />
                   <span>Book Free 15-Min Discovery Call</span>
                 </button>
 
                 <button
-                  className="btn btn-ghost"
+                  type="button"
+                  className="btn-action-ghost"
                   onClick={handleRetake}
                 >
                   <RotateCcw size={16} strokeWidth={2} />
                   <span>Retake Assessment</span>
                 </button>
+              </div>
+
+              {/* Medical Disclaimer Footnote */}
+              <div className="report-disclaimer-row">
+                <Info size={14} className="disclaimer-icon" aria-hidden="true" />
+                <p className="disclaimer-text">
+                  *This quiz provides educational digestive insights based on clinical self-reported symptom patterns. It does not replace individual medical diagnostics.
+                </p>
               </div>
             </div>
           </div>

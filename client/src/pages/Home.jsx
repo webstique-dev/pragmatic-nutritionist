@@ -4,11 +4,11 @@ import ProofStrip from '../components/ProofStrip'
 import Champions from '../components/Champions'
 import CoreAreas from '../components/CoreAreas'
 import ResultsFilter from '../components/ResultsFilter'
-import Checker from '../components/Checker'
 import WhyPragmatic from '../components/WhyPragmatic'
 import Timeline from '../components/Timeline'
 import MeetMeenu from '../components/MeetMeenu'
 import DiagnosticCare from '../components/DiagnosticCare'
+import GutAssessmentSection from '../components/GutAssessmentSection'
 import Faq from '../components/Faq'
 import CtaBand from '../components/CtaBand'
 
@@ -41,8 +41,8 @@ export default function Home() {
       {/* 7. Structured Methodology: 3-Phase Path to Lasting Vitality */}
       <Timeline />
 
-      {/* 8. Interactive Clinical Audit: 5-Question Vitality Checker */}
-      <Checker />
+      {/* 8. Comprehensive Gut Health Assessment Spotlight */}
+      <GutAssessmentSection />
 
       {/* 9. Social Proof: Champions & Elite Athletes */}
       <Champions />
