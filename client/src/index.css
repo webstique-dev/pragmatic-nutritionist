@@ -1,57 +1,57 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
 
 /* ==========================================================================
-   PRAGMATIC NUTRITION - NATURAL BOTANICAL WELLNESS DESIGN SYSTEM
+   PRAGMATIC NUTRITION - BALANCED MODERN CLINICAL WELLNESS DESIGN SYSTEM
    Centralized Theme System & Design Tokens
    Core Palette:
-     - Light Lime:        #C1E899
-     - Earth Brown:       #9A6735
-     - Pale Sage:         #E6F0DC
-     - Deep Natural Green:#55883B
-     - White:             #FFFFFF
+     - Primary Slate Teal:    #0E6258
+     - Fresh Mint Accent:     #48B896
+     - Luminous Pearl White:  #F4F8F7
+     - Warm Amber Terracotta: #C07130
+     - Surface Crisp White:   #FFFFFF
    ========================================================================== */
 
 /* --------------------------------------------------------------------------
    1. Centralized Theme Variables & Design Tokens
    -------------------------------------------------------------------------- */
 :root {
-  /* Exact Core Colors from Reference */
-  --color-primary: #55883B;        /* Deep Natural Green (Primary brand, buttons, active states, icons) */
-  --color-primary-light: #C1E899;  /* Light Lime (Highlights, tags, stats, visual emphasis) */
-  --color-primary-soft: #E6F0DC;   /* Pale Sage (Dominant soft background) */
-  --color-secondary: #9A6735;      /* Earth Brown (Earthy secondary accent for labels, badges, stars) */
-  --color-surface: #FFFFFF;        /* Pure White (Cards, content surfaces, forms) */
+  /* Exact Core Balanced Colors */
+  --color-primary: #0E6258;        /* Deep Botanical Slate Teal (Primary brand, buttons, active states, icons) */
+  --color-primary-light: #48B896;  /* Fresh Vibrant Mint (Highlights, tags, stats, visual emphasis) */
+  --color-primary-soft: #F4F8F7;   /* Clean Luminous Pearl (Dominant soft balanced background) */
+  --color-secondary: #C07130;      /* Warm Amber Terracotta (Warm accent for awards, badges, stars, labels) */
+  --color-surface: #FFFFFF;        /* Pure Crisp White (Cards, content surfaces, forms) */
 
   /* Derived Tonal Variations for Rich Depth & High Contrast */
-  --color-primary-hover: #467230;
-  --color-primary-active: #385B26;
-  --color-primary-subtle: #F2F7ED;
-  --color-primary-glow: rgba(85, 136, 59, 0.22);
-  --color-primary-dark: #223717;
-  --color-primary-darkest: #15240E;
+  --color-primary-hover: #0A4F46;
+  --color-primary-active: #073C35;
+  --color-primary-subtle: #EAF3F1;
+  --color-primary-glow: rgba(14, 98, 88, 0.18);
+  --color-primary-dark: #0F2925;
+  --color-primary-darkest: #091A17;
 
-  --color-lime-glow: rgba(193, 232, 153, 0.35);
-  --color-lime-subtle: #F4FAE9;
+  --color-lime-glow: rgba(72, 184, 150, 0.3);
+  --color-lime-subtle: #EDF7F4;
 
-  --color-secondary-hover: #835529;
-  --color-secondary-soft: #FBF6F0;
-  --color-secondary-subtle: #F2E7DC;
-  --color-secondary-light: #C6986A;
+  --color-secondary-hover: #A4581C;
+  --color-secondary-soft: #FDF8F3;
+  --color-secondary-subtle: #F6ECE1;
+  --color-secondary-light: #DC9253;
 
   /* Typography & High-Contrast Ink Tokens */
-  --color-text-main: #14210F;         /* Deep botanical charcoal-ink on light */
-  --color-text-secondary: #3B4D34;    /* Muted botanical body */
-  --color-text-muted: #5F7358;        /* Subtle muted labels */
+  --color-text-main: #0F172A;         /* Slate-900 (High-contrast slate-black) */
+  --color-text-secondary: #334155;    /* Slate-700 (Readable, balanced editorial body) */
+  --color-text-muted: #64748B;        /* Slate-500 (Subtle muted labels & captions) */
   --color-text-inverse: #FFFFFF;      /* Crisp white text on dark */
-  --color-text-inverse-muted: rgba(255, 255, 255, 0.82);
+  --color-text-inverse-muted: rgba(255, 255, 255, 0.85);
 
   /* Modern Clean Borders */
-  --color-border-subtle: #D5E5C7;     /* Clean border for #E6F0DC */
-  --color-border-warm: #E4DACF;       /* Clean border for Earth Brown tints */
-  --color-border-light: #EBF3E4;      /* Lightest clean border */
+  --color-border-subtle: #DCE6E3;     /* Clean, crisp border for soft backgrounds */
+  --color-border-warm: #EBDED1;       /* Warm border for Amber Terracotta tints */
+  --color-border-light: #EFF5F3;      /* Lightest clean border */
   --color-border-primary: var(--color-primary);
   --color-border-secondary: var(--color-secondary);
-  --color-border-dark: rgba(255, 255, 255, 0.15);
+  --color-border-dark: rgba(255, 255, 255, 0.12);
 
   /* Background Context Aliases mapped directly to centralized tokens */
   --bg-main: var(--color-primary-soft);
@@ -59,9 +59,9 @@
   --bg-sage: var(--color-primary-soft);
   --bg-white: var(--color-surface);
   --bg-card: var(--color-surface);
-  --bg-lime: var(--color-primary-light);
+  --bg-lime: #E8F4F1;
   --bg-dark: var(--color-primary-dark);
-  --bg-dark-surface: #29401C;
+  --bg-dark-surface: #143530;
   --bg-dark-footer: var(--color-primary-darkest);
 
   /* Theme-Aligned Helper Aliases */
@@ -110,9 +110,9 @@
   --text-muted: var(--color-text-muted);
 
   /* WhatsApp Official */
-  --wa: var(--color-primary);
-  --wa-hover: var(--color-primary-hover);
-  --wa-glow: var(--color-primary-glow);
+  --wa: #25D366;
+  --wa-hover: #20BA5A;
+  --wa-glow: rgba(37, 211, 102, 0.22);
 
   /* Typography Tokens */
   --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
@@ -128,11 +128,11 @@
   --radius-card: 1.25rem;
   --radius-pill: 9999px;
 
-  /* Shadows */
-  --shadow-sm: 0 1px 3px rgba(20, 33, 15, 0.04), 0 1px 2px rgba(20, 33, 15, 0.02);
-  --shadow-md: 0 4px 18px -2px rgba(20, 33, 15, 0.06), 0 2px 6px -1px rgba(20, 33, 15, 0.03);
-  --shadow-lg: 0 10px 32px -4px rgba(20, 33, 15, 0.08), 0 4px 12px -2px rgba(20, 33, 15, 0.04);
-  --shadow-2xl: 0 20px 48px -8px rgba(20, 33, 15, 0.12), 0 8px 16px -4px rgba(20, 33, 15, 0.04);
+  /* Modern Neutral Shadows */
+  --shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.04), 0 1px 2px rgba(15, 23, 42, 0.02);
+  --shadow-md: 0 4px 18px -2px rgba(15, 23, 42, 0.06), 0 2px 6px -1px rgba(15, 23, 42, 0.03);
+  --shadow-lg: 0 10px 32px -4px rgba(15, 23, 42, 0.08), 0 4px 12px -2px rgba(15, 23, 42, 0.04);
+  --shadow-2xl: 0 20px 48px -8px rgba(15, 23, 42, 0.12), 0 8px 16px -4px rgba(15, 23, 42, 0.04);
   --shadow-dark: 0 12px 36px -4px rgba(0, 0, 0, 0.45);
 
   /* Easing & Timing */
@@ -213,7 +213,7 @@ h1 em, h2 em, h3 em,
   font-weight: 700;
   font-style: normal;
   letter-spacing: -0.01em;
-  color: var(--color-primary);
+  color: var(--color-secondary);
 }
 
 h1, .hero-editorial-headline {
@@ -265,10 +265,11 @@ p {
   text-transform: uppercase;
   letter-spacing: 0.12em;
   color: var(--color-primary);
-  background-color: var(--color-primary-soft);
+  background-color: var(--color-surface);
   padding: 5px 14px;
   border-radius: var(--r-pill);
   border: 1px solid var(--color-border-subtle);
+  box-shadow: var(--shadow-sm);
   margin-bottom: 12px;
 }
 
@@ -292,7 +293,7 @@ p {
 .section-divider-row .divider-line {
   flex: 1;
   height: 1px;
-  background: linear-gradient(90deg, var(--color-border-subtle) 0%, rgba(85, 136, 59, 0.3) 50%, var(--color-border-subtle) 100%);
+  background: linear-gradient(90deg, var(--color-border-subtle) 0%, rgba(14, 98, 88, 0.25) 50%, var(--color-border-subtle) 100%);
 }
 
 /* Helper Utility Classes */
@@ -319,7 +320,7 @@ p {
   height: 100vh;
   pointer-events: none;
   z-index: 9999;
-  opacity: 0.025;
+  opacity: 0.02;
 }
 .noise-overlay-svg {
   width: 100%;
@@ -356,14 +357,14 @@ p {
   padding: clamp(28px, 4vw, 56px) 0;
 }
 
-/* 1. Pale Sage Background (#E6F0DC) */
+/* 1. Balanced Luminous Pearl Background */
 .bg-brand, .bg-cream, .bg-ecf2ee, .bg-base, .bg-sage, .bg-warm, .bg-sand, .bg-olive {
   background-color: var(--color-primary-soft);
   color: var(--color-text-main);
 }
 .bg-brand .section-divider-row .divider-line,
 .bg-sage .section-divider-row .divider-line {
-  background: linear-gradient(90deg, var(--color-border-subtle) 0%, rgba(85, 136, 59, 0.3) 50%, var(--color-border-subtle) 100%);
+  background: linear-gradient(90deg, var(--color-border-subtle) 0%, rgba(14, 98, 88, 0.25) 50%, var(--color-border-subtle) 100%);
 }
 
 /* 2. Pure Clean White Background (#FFFFFF) */
@@ -372,24 +373,24 @@ p {
   color: var(--color-text-main);
 }
 .bg-white .section-divider-row .divider-line {
-  background: linear-gradient(90deg, var(--color-border-subtle) 0%, rgba(85, 136, 59, 0.25) 50%, var(--color-border-subtle) 100%);
+  background: linear-gradient(90deg, var(--color-border-subtle) 0%, rgba(14, 98, 88, 0.2) 50%, var(--color-border-subtle) 100%);
 }
 
-/* 3. Light Lime Accent Background (#C1E899) */
+/* 3. Subtle Mint-Tinted Neutral Background */
 .bg-lime, .bg-light-lime {
-  background-color: var(--color-primary-light);
+  background-color: var(--bg-lime);
   color: var(--color-text-main);
 }
 .bg-lime .section-eyebrow {
   background-color: var(--color-surface);
   color: var(--color-primary);
-  border-color: rgba(85, 136, 59, 0.25);
+  border-color: var(--color-border-subtle);
 }
 .bg-lime .section-divider-row .divider-line {
-  background: linear-gradient(90deg, rgba(85, 136, 59, 0.15) 0%, rgba(85, 136, 59, 0.4) 50%, rgba(85, 136, 59, 0.15) 100%);
+  background: linear-gradient(90deg, var(--color-border-subtle) 0%, rgba(14, 98, 88, 0.25) 50%, var(--color-border-subtle) 100%);
 }
 
-/* 4. Deep Natural Green Dark Section Background (#223717) */
+/* 4. Deep Botanical Slate Dark Section Background */
 .bg-dark, .bg-black, .bg-forest {
   background-color: var(--color-primary-dark);
   color: var(--color-text-inverse);
@@ -405,16 +406,16 @@ p {
   color: var(--color-text-inverse-muted) !important;
 }
 .bg-dark .section-eyebrow {
-  background-color: rgba(193, 232, 153, 0.14);
+  background-color: rgba(72, 184, 150, 0.14);
   color: var(--color-primary-light);
-  border-color: rgba(193, 232, 153, 0.25);
+  border-color: rgba(72, 184, 150, 0.25);
 }
 .bg-dark .section-divider-row .divider-label {
   color: var(--color-primary-light);
-  opacity: 0.85;
+  opacity: 0.9;
 }
 .bg-dark .section-divider-row .divider-line {
-  background: rgba(193, 232, 153, 0.2);
+  background: rgba(72, 184, 150, 0.2);
 }
 
 /* Layout Width Tiers */
@@ -580,13 +581,13 @@ a.btn {
 }
 
 .navbar-transparent {
-  background-color: rgba(230, 240, 220, 0.94);
+  background-color: rgba(244, 248, 247, 0.94);
   backdrop-filter: blur(14px);
   border-bottom: 1px solid var(--color-border-subtle);
 }
 
 .navbar-scrolled {
-  background-color: rgba(230, 240, 220, 0.98);
+  background-color: rgba(255, 255, 255, 0.96);
   backdrop-filter: blur(18px);
   border-bottom: 1px solid var(--color-border-subtle);
   box-shadow: var(--shadow-sm);
@@ -949,8 +950,8 @@ a.btn {
   font-size: clamp(9rem, 16vw, 17rem);
   font-weight: 800;
   line-height: 0.8;
-  color: var(--color-primary-soft);
-  opacity: 0.7;
+  color: var(--color-primary-subtle);
+  opacity: 0.9;
 }
 .dec-h { top: -2%; left: 4%; }
 .dec-e { top: 16%; right: 6%; }
@@ -988,7 +989,7 @@ a.btn {
   max-height: 100%;
   object-fit: contain;
   display: block;
-  filter: drop-shadow(0 18px 36px rgba(20, 33, 15, 0.12));
+  filter: drop-shadow(0 18px 36px rgba(15, 23, 42, 0.08));
 }
 
 .hero-left-caption {
@@ -2219,10 +2220,10 @@ a.btn {
 }
 
 /* --------------------------------------------------------------------------
-   14. Champions & Sports Nutrition Showcase (Deep Forest Green #142A12)
+   14. Champions & Sports Nutrition Showcase (Deep Botanical Slate #091A17)
    -------------------------------------------------------------------------- */
 .champions-showcase-section {
-  background-color: var(--color-primary-darkest) !important;
+  background: linear-gradient(180deg, #091A17 0%, #0E2622 100%) !important;
   color: #ffffff;
   padding: clamp(52px, 6.5vw, 90px) 0;
   position: relative;
@@ -2256,8 +2257,8 @@ a.btn {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: rgba(193, 232, 153, 0.12);
-  border: 1px solid rgba(193, 232, 153, 0.28);
+  background: rgba(72, 184, 150, 0.12);
+  border: 1px solid rgba(72, 184, 150, 0.28);
   padding: 5px 14px;
   border-radius: 9999px;
   margin-bottom: 16px;
@@ -2331,7 +2332,7 @@ a.btn {
   height: 44px;
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(193, 232, 153, 0.25);
+  border: 1px solid rgba(72, 184, 150, 0.25);
   color: #ffffff;
   display: flex;
   align-items: center;
@@ -2345,7 +2346,7 @@ a.btn {
   color: var(--color-text-main);
   border-color: var(--color-primary-light);
   transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(193, 232, 153, 0.3);
+  box-shadow: 0 6px 16px rgba(72, 184, 150, 0.3);
 }
 
 .athlete-nav-btn.is-disabled {
@@ -2381,8 +2382,8 @@ a.btn {
 .athlete-showcase-card {
   flex: 0 0 clamp(290px, 30vw, 350px);
   scroll-snap-align: start;
-  background: #182c14;
-  border: 1px solid rgba(193, 232, 153, 0.22);
+  background: #132E29;
+  border: 1px solid rgba(72, 184, 150, 0.22);
   border-radius: 22px;
   overflow: hidden;
   display: flex;
@@ -2402,8 +2403,8 @@ a.btn {
   position: relative;
   width: 100%;
   height: clamp(280px, 30vw, 340px);
-  background: #0e1b0d;
-  border-bottom: 1px solid rgba(193, 232, 153, 0.16);
+  background: #0A1815;
+  border-bottom: 1px solid rgba(72, 184, 150, 0.16);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2439,7 +2440,7 @@ a.btn {
   position: absolute;
   top: 14px;
   left: 14px;
-  background: rgba(14, 27, 13, 0.88);
+  background: rgba(10, 24, 21, 0.88);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   color: var(--color-primary-light);
@@ -2449,17 +2450,17 @@ a.btn {
   font-weight: 800;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  border: 1px solid rgba(193, 232, 153, 0.28);
+  border: 1px solid rgba(72, 184, 150, 0.28);
   z-index: 2;
 }
 
-/* Athlete Information Below the Image (No Overlapping Gradient on Face/Medal) */
+/* Athlete Information Below the Image */
 .athlete-info-pane {
   padding: 18px 20px 20px;
   display: flex;
   flex-direction: column;
   gap: 8px;
-  background: #182c14;
+  background: #132E29;
   flex: 1;
 }
 
@@ -2485,8 +2486,8 @@ a.btn {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  background: rgba(193, 232, 153, 0.12);
-  border: 1px solid rgba(193, 232, 153, 0.25);
+  background: rgba(72, 184, 150, 0.12);
+  border: 1px solid rgba(72, 184, 150, 0.25);
   color: var(--color-primary-light);
   padding: 5px 12px;
   border-radius: 8px;
@@ -2557,8 +2558,8 @@ a.btn {
 
 /* Compact Young Athlete CTA Strip */
 .young-athlete-cta-strip {
-  background: linear-gradient(135deg, #182c14 0%, #203c1b 100%);
-  border: 1px solid rgba(193, 232, 153, 0.24);
+  background: linear-gradient(135deg, #132E29 0%, #1A4039 100%);
+  border: 1px solid rgba(72, 184, 150, 0.24);
   border-radius: 20px;
   padding: clamp(20px, 3vw, 26px) clamp(20px, 4vw, 36px);
   display: flex;
@@ -2604,7 +2605,7 @@ a.btn {
   justify-content: center;
   gap: 9px;
   background: var(--color-primary-light);
-  color: var(--color-text-main) !important;
+  color: #091A17 !important;
   font-family: var(--font-body);
   font-weight: 700;
   font-size: 0.925rem;
@@ -2613,7 +2614,7 @@ a.btn {
   border: 1px solid var(--color-primary-light);
   cursor: pointer;
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: 0 4px 16px rgba(193, 232, 153, 0.28);
+  box-shadow: 0 4px 16px rgba(72, 184, 150, 0.28);
   text-decoration: none;
   white-space: nowrap;
 }
@@ -2621,8 +2622,9 @@ a.btn {
 .btn-athlete-cta:hover {
   background: #ffffff;
   border-color: #ffffff;
+  color: #091A17 !important;
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(193, 232, 153, 0.4);
+  box-shadow: 0 8px 24px rgba(72, 184, 150, 0.4);
 }
 
 @media (max-width: 900px) {
@@ -2752,7 +2754,7 @@ a.btn {
 .clinical-data-panel {
   width: 100%;
   background: var(--color-primary-soft);
-  border: 1px solid rgba(85, 136, 59, 0.18);
+  border: 1px solid rgba(14, 98, 88, 0.16);
   border-radius: 18px;
   padding: 18px 22px;
   display: flex;
@@ -2766,7 +2768,7 @@ a.btn {
   align-items: center;
   justify-content: space-between;
   padding-bottom: 10px;
-  border-bottom: 1px solid rgba(85, 136, 59, 0.14);
+  border-bottom: 1px solid rgba(14, 98, 88, 0.12);
 }
 
 .panel-badge-label {
@@ -2878,7 +2880,7 @@ a.btn {
   font-weight: 600;
   background-color: var(--color-primary-soft);
   color: var(--color-text-main);
-  border: 1px solid rgba(85, 136, 59, 0.2);
+  border: 1px solid var(--color-border-subtle);
   cursor: pointer;
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   white-space: nowrap;
@@ -2895,7 +2897,7 @@ a.btn {
   background-color: var(--color-primary) !important;
   color: #ffffff !important;
   border-color: var(--color-primary);
-  box-shadow: 0 4px 14px rgba(85, 136, 59, 0.24);
+  box-shadow: 0 4px 14px rgba(14, 98, 88, 0.24);
 }
 
 .chip-counter {
@@ -2919,10 +2921,10 @@ a.btn {
 /* Featured Hero Case Study Card */
 .outcomes-featured-card {
   background: linear-gradient(145deg, #ffffff 0%, var(--color-primary-soft) 100%);
-  border: 1.5px solid rgba(85, 136, 59, 0.24);
+  border: 1.5px solid var(--color-border-subtle);
   border-radius: 20px;
   padding: clamp(24px, 3.5vw, 36px);
-  box-shadow: 0 10px 30px -10px rgba(85, 136, 59, 0.12);
+  box-shadow: var(--shadow-md);
   display: flex;
   flex-direction: column;
   gap: 18px;
@@ -2933,7 +2935,7 @@ a.btn {
 
 .outcomes-featured-card:hover {
   border-color: var(--color-primary);
-  box-shadow: 0 14px 40px -10px rgba(85, 136, 59, 0.18);
+  box-shadow: var(--shadow-lg);
 }
 
 .featured-card-top-bar {
@@ -2979,8 +2981,8 @@ a.btn {
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  background: rgba(85, 136, 59, 0.08);
-  border: 1px solid rgba(85, 136, 59, 0.18);
+  background: rgba(14, 98, 88, 0.08);
+  border: 1px solid rgba(14, 98, 88, 0.18);
   border-radius: 10px;
   padding: 6px 14px;
   width: fit-content;
@@ -3027,7 +3029,7 @@ a.btn {
   align-items: center;
   gap: 12px;
   padding-top: 16px;
-  border-top: 1px solid rgba(85, 136, 59, 0.14);
+  border-top: 1px solid var(--color-border-subtle);
   flex-wrap: wrap;
 }
 
@@ -3073,7 +3075,7 @@ a.btn {
   font-size: 0.72rem;
   font-weight: 700;
   color: var(--color-primary);
-  background: rgba(85, 136, 59, 0.1);
+  background: rgba(14, 98, 88, 0.08);
   padding: 4px 10px;
   border-radius: 6px;
 }
@@ -3087,7 +3089,7 @@ a.btn {
 
 .outcomes-supporting-card {
   background: #ffffff;
-  border: 1px solid rgba(85, 136, 59, 0.16);
+  border: 1px solid var(--color-border-subtle);
   border-radius: 16px;
   padding: clamp(18px, 2.2vw, 24px);
   display: flex;
@@ -3095,13 +3097,13 @@ a.btn {
   justify-content: space-between;
   gap: 14px;
   transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s, border-color 0.25s;
-  box-shadow: 0 4px 14px -4px rgba(0, 0, 0, 0.04);
+  box-shadow: var(--shadow-sm);
 }
 
 .outcomes-supporting-card:hover {
   transform: translateY(-3px);
   border-color: var(--color-primary);
-  box-shadow: 0 10px 24px -6px rgba(85, 136, 59, 0.12);
+  box-shadow: 0 10px 24px -6px rgba(14, 98, 88, 0.12);
 }
 
 .supporting-card-header {
@@ -3119,7 +3121,7 @@ a.btn {
   background: var(--color-primary-soft);
   padding: 3px 10px;
   border-radius: 9999px;
-  border: 1px solid rgba(85, 136, 59, 0.14);
+  border: 1px solid var(--color-border-subtle);
 }
 
 .supporting-stars {
@@ -3132,10 +3134,10 @@ a.btn {
   display: inline-flex;
   align-items: baseline;
   gap: 6px;
-  background: rgba(85, 136, 59, 0.06);
+  background: rgba(14, 98, 88, 0.06);
   padding: 4px 8px;
   border-radius: 6px;
-  border: 1px solid rgba(85, 136, 59, 0.12);
+  border: 1px solid rgba(14, 98, 88, 0.12);
   width: fit-content;
 }
 
@@ -3391,9 +3393,9 @@ a.btn {
   position: relative;
   overflow: hidden;
   border-radius: 28px;
-  background: linear-gradient(135deg, #12200c 0%, #1a3012 45%, #244218 100%);
-  border: 1px solid rgba(193, 232, 153, 0.22);
-  box-shadow: 0 25px 60px -15px rgba(18, 32, 12, 0.65), 0 0 0 1px rgba(255, 255, 255, 0.05);
+  background: linear-gradient(135deg, #091A17 0%, #0F2C27 45%, #173F38 100%);
+  border: 1px solid rgba(72, 184, 150, 0.22);
+  box-shadow: 0 25px 60px -15px rgba(9, 26, 23, 0.65), 0 0 0 1px rgba(255, 255, 255, 0.05);
   padding: clamp(40px, 5.5vw, 64px) clamp(24px, 5vw, 56px);
   color: #ffffff;
 }
@@ -3404,7 +3406,7 @@ a.btn {
   left: -100px;
   width: 420px;
   height: 420px;
-  background: radial-gradient(circle, rgba(193, 232, 153, 0.16) 0%, rgba(193, 232, 153, 0) 70%);
+  background: radial-gradient(circle, rgba(72, 184, 150, 0.16) 0%, rgba(72, 184, 150, 0) 70%);
   border-radius: 50%;
   pointer-events: none;
 }
@@ -3415,7 +3417,7 @@ a.btn {
   right: -80px;
   width: 440px;
   height: 440px;
-  background: radial-gradient(circle, rgba(85, 136, 59, 0.28) 0%, rgba(85, 136, 59, 0) 70%);
+  background: radial-gradient(circle, rgba(14, 98, 88, 0.28) 0%, rgba(14, 98, 88, 0) 70%);
   border-radius: 50%;
   pointer-events: none;
 }
@@ -3441,8 +3443,8 @@ a.btn {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: rgba(193, 232, 153, 0.12);
-  border: 1px solid rgba(193, 232, 153, 0.28);
+  background: rgba(72, 184, 150, 0.12);
+  border: 1px solid rgba(72, 184, 150, 0.28);
   padding: 6px 14px;
   border-radius: 9999px;
   margin-bottom: 20px;
@@ -3508,7 +3510,7 @@ a.btn {
   justify-content: center;
   gap: 10px;
   background-color: var(--color-primary-light);
-  color: var(--color-text-main) !important;
+  color: #091A17 !important;
   font-family: var(--font-body);
   font-weight: 700;
   font-size: 0.95rem;
@@ -3517,16 +3519,16 @@ a.btn {
   border: 1px solid var(--color-primary-light);
   cursor: pointer;
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: 0 4px 18px rgba(193, 232, 153, 0.3);
+  box-shadow: 0 4px 18px rgba(72, 184, 150, 0.3);
   text-decoration: none;
 }
 
 .clinical-btn-primary:hover {
   background-color: #ffffff;
   border-color: #ffffff;
-  color: var(--color-text-main) !important;
+  color: #091A17 !important;
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(193, 232, 153, 0.45);
+  box-shadow: 0 8px 24px rgba(72, 184, 150, 0.45);
 }
 
 .clinical-btn-primary .cta-arrow-icon {
@@ -3588,8 +3590,8 @@ a.btn {
 
 .clinical-consultation-card {
   width: 100%;
-  background: rgba(14, 25, 10, 0.62);
-  border: 1px solid rgba(193, 232, 153, 0.2);
+  background: rgba(9, 26, 23, 0.65);
+  border: 1px solid rgba(72, 184, 150, 0.2);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border-radius: 20px;
@@ -3605,7 +3607,7 @@ a.btn {
   align-items: center;
   justify-content: space-between;
   padding-bottom: 12px;
-  border-bottom: 1px solid rgba(193, 232, 153, 0.12);
+  border-bottom: 1px solid rgba(72, 184, 150, 0.12);
 }
 
 .consultation-status-pill {
@@ -3625,20 +3627,20 @@ a.btn {
   height: 8px;
   border-radius: 50%;
   background: var(--color-primary-light);
-  box-shadow: 0 0 0 0 rgba(193, 232, 153, 0.7);
-  animation: pulseGreenGlow 2s infinite cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 0 0 0 rgba(72, 184, 150, 0.7);
+  animation: pulseTealGlow 2s infinite cubic-bezier(0.16, 1, 0.3, 1);
   flex-shrink: 0;
 }
 
-@keyframes pulseGreenGlow {
+@keyframes pulseTealGlow {
   0% {
-    box-shadow: 0 0 0 0 rgba(193, 232, 153, 0.7);
+    box-shadow: 0 0 0 0 rgba(72, 184, 150, 0.7);
   }
   70% {
-    box-shadow: 0 0 0 8px rgba(193, 232, 153, 0);
+    box-shadow: 0 0 0 8px rgba(72, 184, 150, 0);
   }
   100% {
-    box-shadow: 0 0 0 0 rgba(193, 232, 153, 0);
+    box-shadow: 0 0 0 0 rgba(72, 184, 150, 0);
   }
 }
 
@@ -3668,8 +3670,8 @@ a.btn {
 }
 
 .consultation-pillar-item:hover {
-  background: rgba(193, 232, 153, 0.08);
-  border-color: rgba(193, 232, 153, 0.22);
+  background: rgba(72, 184, 150, 0.08);
+  border-color: rgba(72, 184, 150, 0.22);
 }
 
 .pillar-num {
@@ -3677,7 +3679,7 @@ a.btn {
   font-size: 0.72rem;
   font-weight: 800;
   color: var(--color-primary-light);
-  background: rgba(193, 232, 153, 0.15);
+  background: rgba(72, 184, 150, 0.15);
   padding: 2px 7px;
   border-radius: 6px;
   line-height: 1.4;
@@ -3709,7 +3711,7 @@ a.btn {
   align-items: center;
   justify-content: space-between;
   padding-top: 12px;
-  border-top: 1px solid rgba(193, 232, 153, 0.12);
+  border-top: 1px solid rgba(72, 184, 150, 0.12);
   gap: 12px;
 }
 
@@ -3759,7 +3761,7 @@ a.btn {
   font-size: 0.7rem;
   font-weight: 700;
   color: var(--color-primary-light);
-  background: rgba(193, 232, 153, 0.12);
+  background: rgba(72, 184, 150, 0.12);
   padding: 4px 8px;
   border-radius: 6px;
   flex-shrink: 0;
@@ -3821,7 +3823,7 @@ a.btn {
 }
 
 /* --------------------------------------------------------------------------
-   19. Editorial Footer (Deep Natural Green Dark Anchor #15240E)
+   19. Editorial Footer (Deep Botanical Slate Dark Anchor #091A17)
    -------------------------------------------------------------------------- */
 .osmo-footer {
   position: relative;
@@ -3829,7 +3831,7 @@ a.btn {
   background-color: var(--color-primary-darkest);
   color: rgba(255, 255, 255, 0.75);
   padding: clamp(52px, 6vw, 84px) 0 max(90px, calc(60px + env(safe-area-inset-bottom)));
-  border-top: 1px solid rgba(193, 232, 153, 0.12);
+  border-top: 1px solid rgba(72, 184, 150, 0.12);
   overflow: hidden;
 }
 .osmo-footer-container {
@@ -3885,7 +3887,7 @@ a.btn {
   align-items: center;
   gap: 8px;
   padding: 9px 18px;
-  background-color: var(--color-primary);
+  background-color: var(--wa);
   color: var(--color-surface) !important;
   border-radius: var(--r-pill);
   font-size: 0.75rem;
@@ -3894,10 +3896,10 @@ a.btn {
   letter-spacing: 0.05em;
   text-decoration: none !important;
   transition: all 0.2s var(--ease-reveal);
-  box-shadow: 0 4px 14px var(--color-primary-glow);
+  box-shadow: 0 4px 14px var(--wa-glow);
 }
 .osmo-wa-pill-btn:hover {
-  background-color: var(--color-primary-hover);
+  background-color: var(--wa-hover);
   transform: translateY(-2px);
 }
 
@@ -4003,7 +4005,7 @@ a.btn {
   font-weight: 800;
   line-height: 0.85;
   letter-spacing: -0.04em;
-  color: rgba(193, 232, 153, 0.05);
+  color: rgba(72, 184, 150, 0.04);
   white-space: nowrap;
   display: block;
 }
@@ -4101,12 +4103,12 @@ a.btn {
   box-shadow: var(--shadow-2xl);
 }
 .sticky-wa {
-  background-color: var(--color-primary);
+  background-color: var(--wa);
   color: var(--color-surface) !important;
-  border-color: var(--color-primary);
+  border-color: var(--wa);
 }
 .sticky-wa:hover {
-  background-color: var(--color-primary-hover);
+  background-color: var(--wa-hover);
 }
 .sticky-book {
   background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-hover) 100%);
@@ -4137,7 +4139,7 @@ a.btn {
 .modal-backdrop {
   position: fixed;
   inset: 0;
-  background-color: rgba(20, 33, 15, 0.55);
+  background-color: rgba(15, 23, 42, 0.55);
   backdrop-filter: blur(8px);
   z-index: 999;
   display: grid;
